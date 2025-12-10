@@ -5,6 +5,7 @@ import LogIn from './Pages/Login/LogIn'
 import Home from './Pages/Home/Home'
 import Challenge from './Pages/Challenge/Challenge'
 import Room from './Pages/Room/Room'
+import PrivateRoute from './Components/PrivateRoutes'
 
 function App() {
   return (

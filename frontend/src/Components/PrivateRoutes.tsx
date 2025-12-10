@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { findIfUserIsAdmin } from "./Utils/functions"
+import { findIfUserIsSuperAdmin } from '../Utils/functions'
 
 export default function PrivateRoute() {
   return (
-    findIfUserIsAdmin() ? <Outlet/> : <Navigate to="/"/>
+    findIfUserIsSuperAdmin() ? <Outlet/> : <Navigate to="/"/>
   )
 }
