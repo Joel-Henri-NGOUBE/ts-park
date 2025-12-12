@@ -8,7 +8,6 @@ export default function SignUp(){
 
     const form = {
         username: "",
-        mail: "",
         password: ""
     }
     const [formValues, setFormValues] = useState<typeof form>(form)
@@ -46,14 +45,13 @@ export default function SignUp(){
      * @param inputValues the values of the form
      */
     function handleSignUp(inputValues: typeof form){
-        fetch([`${import.meta.env.VITE_APP_BACKEND_API_URL}`, "/signup"].join(""), {
+        fetch([`${import.meta.env.VITE_APP_BACKEND_API_URL}`, "/auth/signup"].join(""), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
               username: inputValues.username,
-              mail: inputValues.mail,
               password: inputValues.password
             })
         })

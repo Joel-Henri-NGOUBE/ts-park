@@ -1,8 +1,17 @@
 import { config } from "dotenv";
 import { OpenMongooseConnection } from "./services/utils";
 import { getUserModel } from "./services/schema/user.schema";
+import { AuthController } from "./controllers";
+import express from "express"
+import Cors from "cors"
 
 config()
+
+const app = express()
+
+app.use(express.json())
+
+app.use(Cors({origin: "http://localhost:5173"}))
 
 async function main(){
     await OpenMongooseConnection()
@@ -10,28 +19,12 @@ async function main(){
 
 main().catch(console.error)
 
-const userModel = getUserModel()
+// const userModel = getUserModel()
 
-userModel.insertMany([{
-    username: "superadmin",
-    password: "password",
-    token: "token",
-    isActive: true,
-    role: "superadmin",
-    score: 0
-}, {
-    username: "manager1",
-    password: "password",
-    token: "token",
-    isActive: true,
-    role: "manager",
-    score: 0
-}, {
-    username: "user1",
-    password: "password",
-    token: "token",
-    isActive: true,
-    role: "user",
-    score: 0
-}])
+const authController = new AuthController()
 
+app.use("/auth", authController.buildRouter())
+
+app.listen(3000, function(){
+    console.log("Listening")
+})

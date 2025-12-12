@@ -45,7 +45,7 @@ export default function LogIn(){
      * @param inputValues the values of the form
      */
     function handleLogIn(inputValues: typeof form){
-        fetch([`${import.meta.env.VITE_APP_BACKEND_API_URL}`, "/api/login_check"].join(""), {
+        fetch([`${import.meta.env.VITE_APP_BACKEND_API_URL}`, "/auth/login"].join(""), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
