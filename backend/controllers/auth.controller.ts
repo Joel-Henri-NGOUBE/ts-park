@@ -1,60 +1,60 @@
 import { Request, Response, Router } from "express"
-import { getUserModel } from "../services/schema/user.schema";
+import { UserModel } from "../services/schema/user.schema";
 import bcrypt from "bcryptjs"
 import { User } from "../models";
 import jwt from "jsonwebtoken"
 // import Request, Response from "express"
-export class AuthController{
+export class AuthController {
     // readonly lessonService: LessonService
 
-    private userModel = getUserModel()
+    private userModel = UserModel
 
     constructor(
         // lessonService: LessonService
-    ){
+    ) {
         // this.lessonService = lessonService
     }
 
-    async login(req: Request, res: Response){
+    async login(req: Request, res: Response) {
         const { username, password } = req.body
 
 
-        const user: User  = await this.userModel.findOne({
+        const user: User = await this.userModel.findOne({
             username: username
         }) as User
 
         const isPasswordValid: boolean = bcrypt.compareSync(password, user.password)
 
-        if(isPasswordValid){
+        if (isPasswordValid) {
             const token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET as string)
-            await this.userModel.updateOne({ username: username}, {
+            await this.userModel.updateOne({ username: username }, {
                 token: token
             })
-            res.json({token: token})
+            res.json({ token: token })
         }
     }
 
-    async signup(req: Request, res: Response){
+    async signup(req: Request, res: Response) {
         const { username, password } = req.body
 
 
         await this.userModel.insertMany({
             username: username,
-            password:  bcrypt.hashSync(password, bcrypt.genSaltSync()) ,
+            password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
             token: "",
             isActive: true,
             role: "user",
             score: 0
         })
 
-        return res.json({message: "User created"})
+        return res.json({ message: "User created" })
     }
 
-    async create(req: Request, res: Response){
-        
+    async create(req: Request, res: Response) {
+
     }
 
-    buildRouter(): Router{
+    buildRouter(): Router {
         const router: Router = Router();
         router.post("/login", this.login.bind(this))
         router.post("/signup", this.signup.bind(this))
