@@ -9,7 +9,6 @@ export default function Header() {
       <Link to="/challenge">Challenge </Link>
       <Link to="/addrooms">Add Rooms </Link>
       <Link to="/admin">Administration</Link>
-      <Link to="/admin/utilisateurs">Utilisateurs</Link>
       {/* Ajouter verfication admin par la suite */}
     </div>
   );

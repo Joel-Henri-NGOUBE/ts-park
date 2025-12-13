@@ -9,7 +9,7 @@ export default function Admin() {
           <a href="#" className="hover:text-gray-300">
             Salles
           </a>
-          <a href="#" className="hover:text-gray-300">
+          <a href="admin/Exercices" className="hover:text-gray-300">
             Exercices
           </a>
           <a href="#" className="hover:text-gray-300">
