@@ -7,6 +7,8 @@ import { UserController } from "./controllers/user.controller";
 import { UserService } from "./services";
 import { ExerciseController } from "./controllers/exercice.controller";
 import { ExerciseService } from "./services/exercice.services";
+import { RoomService } from "./services/room.services";
+import { RoomController } from "./controllers/room.controller";
 
 config()
 
@@ -23,15 +25,18 @@ async function main() {
 main().catch(console.error)
 const userService = new UserService();
 const exerciseService = new ExerciseService();
+const roomService = new RoomService();
 // const userModel = getUserModel()
 
 const authController = new AuthController()
 const userController = new UserController(userService)
 const exerciseController = new ExerciseController(exerciseService)
+const roomController = new RoomController(roomService)
 
 app.use("/auth", authController.buildRouter())
 app.use("/users", userController.buildRouter())
 app.use("/exercises", exerciseController.buildRouter())
+app.use("/rooms", roomController.buildRouter())
 
 
 app.listen(3000, function () {

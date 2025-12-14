@@ -1,11 +1,12 @@
-export type Difficulty = "Easy" | "Medium" | "Hard"
-
-export interface Room{
+export type Difficulty = "Easy" | "Medium" | "Hard";
+export interface Room {
+    roomId: string,
     name: string,
-    userId: string,
+    ownerUserId: string,
     capacity: number,
     difficulty?: Difficulty,
     address: string,
     contact: string | number,
-    equipment: string
+    equipment: string,
+    roomStatus: "Pending" | "Accepted" | "Refused"
 }
