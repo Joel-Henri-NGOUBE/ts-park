@@ -3,7 +3,7 @@ import { OpenMongooseConnection } from "./services/utils";
 import { AuthController } from "./controllers";
 import express from "express"
 import Cors from "cors"
-import { ChallengeController } from "./controllers/challenge.controller copy";
+import { ChallengeController } from "./controllers/challenge.controller";
 import { UserController } from "./controllers/user.controller";
 import { UserService } from "./services";
 import { ExerciseController } from "./controllers/exercice.controller";

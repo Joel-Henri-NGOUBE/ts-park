@@ -1,13 +1,23 @@
 import { Request, Response, Router } from "express"
-import { getUserModel } from "../services/schema/user.schema";
+// import { getUserModel } from "../services/schema/user.schema";
 import bcrypt from "bcryptjs"
-import { User } from "../models";
+import { Challenge, User } from "../models";
 import jwt from "jsonwebtoken"
 import { getChallengeModel } from "../services/schema/challenge.schema";
 import mongoose from "mongoose";
+import { getExerciseChallengeModel } from "../services/schema/exercise_challenge.schema";
 // import Request, Response from "express"
+
+type Exercise = {
+    id: mongoose.Types.ObjectId,
+    order: number
+}
+
 export class ChallengeController{
     // readonly lessonService: LessonService
+
+    private challengeModel = getChallengeModel()
+    private exerciseChallengeModel = getExerciseChallengeModel()
 
     constructor(
         // lessonService: LessonService
@@ -53,15 +63,22 @@ export class ChallengeController{
     async create(req: Request, res: Response){
         const token = req.headers?.authorization?.split(" ")[1]
         const payload = jwt.verify(token as string, process.env.JWT_SECRET as string) as User
-        console.log(payload)
         const { name, difficulty, exercises } = req.body
-        const challenge = getChallengeModel()
-        await challenge.insertOne({
+        const inserted = await this.challengeModel.insertOne({
             name: name,
             userId: new mongoose.Types.ObjectId(payload._id),
             type: "user",
             difficulty: difficulty
         })
+        console.log(inserted)
+        this.exerciseChallengeModel.insertMany((exercises as Exercise[]).map((e) => {        
+                return {
+                    order: e.order,
+                    exerciseId: e.id,
+                    challengeId: (inserted as Challenge)._id
+                }
+            
+        }))
     }
 
     buildRouter(): Router{
