@@ -3,6 +3,6 @@
  */
 export interface ChallengeUser{
     userId: string,
-    challangeId: string
+    challengeId: string
     registred: boolean
 }
