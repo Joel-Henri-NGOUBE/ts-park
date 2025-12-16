@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken"
 import { getChallengeModel } from "../services/schema/challenge.schema";
 import mongoose from "mongoose";
 import { getExerciseChallengeModel } from "../services/schema/exercise_challenge.schema";
+import { getChallengeRegistrationModel } from "../services/schema/challenge_registration.schema";
 // import Request, Response from "express"
 
 type Exercise = {
@@ -18,6 +19,7 @@ export class ChallengeController{
 
     private challengeModel = getChallengeModel()
     private exerciseChallengeModel = getExerciseChallengeModel()
+    private challengeRegistration = getChallengeRegistrationModel()
 
     constructor(
         // lessonService: LessonService
@@ -44,29 +46,31 @@ export class ChallengeController{
     //     }
     // }
 
-    // async signup(req: Request, res: Response){
-    //     const { username, password } = req.body
+    private getPayload(req: Request){
+        const token = req.headers?.authorization?.split(" ")[1]
+        const payload = jwt.verify(token as string, process.env.JWT_SECRET as string)
 
+        return { token, payload }
+    }
 
-    //     await this.userModel.insertMany({
-    //         username: username,
-    //         password:  bcrypt.hashSync(password, bcrypt.genSaltSync()) ,
-    //         token: "",
-    //         isActive: true,
-    //         role: "user",
-    //         score: 0
-    //     })
+    async register(req: Request, res: Response){
+        const { token , payload } = this.getPayload(req)
+        const id = req.params.id
 
-    //     return res.json({message: "User created"})
-    // }
+        await this.challengeRegistration.insertOne({
+            userId: (payload as User)._id,
+            challengeId: id
+        })
+
+        return res.json({message: "Challenge registered"})
+    }
 
     async create(req: Request, res: Response){
-        const token = req.headers?.authorization?.split(" ")[1]
-        const payload = jwt.verify(token as string, process.env.JWT_SECRET as string) as User
+        const { token , payload } = this.getPayload(req)
         const { name, difficulty, exercises } = req.body
         const inserted = await this.challengeModel.insertOne({
             name: name,
-            userId: new mongoose.Types.ObjectId(payload._id),
+            userId: new mongoose.Types.ObjectId((payload as User)._id),
             type: "user",
             difficulty: difficulty
         })
@@ -84,6 +88,7 @@ export class ChallengeController{
     buildRouter(): Router{
         const router: Router = Router();
         router.post("/create", this.create.bind(this))
+        router.post("/register/:id", this.register.bind(this))
         // router.post("/signup", this.signup.bind(this))
         return router
     }
