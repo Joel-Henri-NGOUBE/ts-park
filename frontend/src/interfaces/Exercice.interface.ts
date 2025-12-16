@@ -1,11 +1,9 @@
-import { Difficulty } from "./room.interface";
 
 export interface Exercise {
-    uid: string,
     name: string,
     description: string,
     muscle: string,
-    difficulty: Difficulty,
+    difficulty: "Easy" | "Medium" | "Hard",
     calories: number,
     duration: number,
     score: number // The score given by the exercice

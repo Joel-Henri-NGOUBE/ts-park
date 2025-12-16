@@ -1,39 +1,32 @@
-import { model, Model, Schema } from "mongoose";
+import { model, Model, Schema, models } from "mongoose";
 import { User } from "../../models";
 
-export function getUserSchema(): Schema<User>{
-    return new Schema<User>({
-        username: {
-            type: String,
-            required: true,
-            unique: true
-        },
-        password: {
-            type: String,
-            required: true,
-        },
-        token: {
-            type: String
-        },
-        isActive: {
-            type: Boolean,
-            required: true,
-            unique: true
-        },
-        role: {
-            type: String,
-            required: true,
-        }
-    }, {
-        versionKey: false,
-        collection: "user",
-        timestamps: {
-            createdAt: true,
-            updatedAt: true
-        }
-    })
-}
+const UserSchema = new Schema<User>({
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    token: {
+        type: String
+    },
+    isActive: {
+        type: Boolean,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true,
+    }
+}, {
+    versionKey: false,
+    collection: "user",
+    timestamps: true
+});
 
-export function getUserModel(): Model<User>{
-    return model("User", getUserSchema())
-}
+export const UserModel: Model<User> =
+    models.User || model<User>("User", UserSchema);

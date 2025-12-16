@@ -1,13 +1,9 @@
-import mongoose from "mongoose"
 
-type UserRole = "superadmin" | "manager" | "user"
 export interface User {
-    uid: string,
-    _id: mongoose.Types.ObjectId
     username: string,
     password: string,
     token: string,
     isActive: boolean,
-    role: UserRole,
+    role: "superadmin" | "manager" | "user",
     score: number // The resulting score of the challenges
 }
