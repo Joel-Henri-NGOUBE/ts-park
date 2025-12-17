@@ -1,6 +1,6 @@
 export * from "./badge.interface"
 export * from "./challenge.interface"
-export * from "./challenge_user.interface"
+export * from "./challenge_registration.interface"
 export * from "./exercise.interface"
 export * from "./exercise_challenge.interface"
 export * from "./room.interface"

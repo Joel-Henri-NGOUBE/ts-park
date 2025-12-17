@@ -1,57 +1,55 @@
 import { Request, Response, Router } from "express";
 import { RoomModel } from "./schema/room.schema";
+import { verify } from "crypto";
+import { verifyObjectId } from "../fonction";
+import { UserModel } from "./schema/user.schema";
 export class RoomService {
-    public async getAllRooms(req: Request, res: Response) {
+    public async getAllRooms() {
         try {
             const getAllRooms = await RoomModel.find();
             return getAllRooms;
         } catch (error) {
-            return res.status(404).json({ message: "Error while getting all rooms", error });
+            throw new Error("Error while getting all rooms");
         }
     }
 
-    public async getRoomById(req: Request, res: Response) {
-        const roomId = req.params.roomId;
-        if (roomId === "") {
-            return res.status(404).json({ message: "RoomId is required to found room" });
-        }
+    public async getRoomById(roomId: string) {
+        verifyObjectId(roomId);
         try {
-            const getRoomById = await RoomModel.findOne({ roomId: roomId });
+            const getRoomById = await RoomModel.findById(roomId);
             if (!getRoomById) {
-                return res.status(404).json({ message: "Room not found" });
+                throw new Error("Room not found");
             }
             return getRoomById;
         } catch (error) {
-            return res.status(404).json({ message: "Error while getting room by id  ", error });
-
+            throw new Error("Error while getting room by id  ");
         }
     }
 
-    public async getAllRoomByStatus(req: Request, res: Response) {
-        const status = req.params.status;
+    public async getAllRoomByStatus(status: string) {
+
         if (status != "Pending" && status != "Accepted" && status != "Refused") {
-            return res.status(404).json({ message: "Status need to be:  Pending || Accepted || Refused" });
+            throw new Error("Status need to be:  Pending || Accepted || Refused");
         }
         try {
             const getAllRoomByStatus = await RoomModel.find({ roomStatus: status });
             return getAllRoomByStatus;
         } catch (error) {
-            return res.status(404).json({ message: "Error while getting all rooms status", error });
+            throw new Error("Error while getting all rooms by status");
         }
     }
 
     public async createRoom(req: Request, res: Response) {
         const room = req.body;
-        console.log(room);
         try {
             const newRoom = new RoomModel(room);
             const existingRoom = await RoomModel.findOne({ name: newRoom.name });
             if (newRoom.name === "") {
-                return res.status(400).json({ message: "Room name is required" });
+                throw new Error("Room name is required");
             }
 
             if (existingRoom) {
-                return res.status(409).json({ message: "Room already exists" });
+                throw new Error("Room already exists");
             }
             return await newRoom.save();
         } catch (error) {
@@ -65,11 +63,8 @@ export class RoomService {
             return res.status(404).json({ message: "RoomId is required" });
         }
         try {
-            const existingRoom = await RoomModel.findOne({ roomId: roomId });
-            if (!existingRoom) {
-                return res.status(404).json({ message: "Room not found" });
-            }
-            return await RoomModel.deleteOne({ roomId: roomId });
+            return await RoomModel.findByIdAndDelete(roomId);
+
         } catch (error) {
             return res.status(500).json({ message: "Error while deleting room" });
         }
@@ -82,11 +77,13 @@ export class RoomService {
             return res.status(404).json({ message: "RoomId is required" });
         }
         try {
-            const existingRoom = await RoomModel.findOne({ roomId: roomId });
+            const existingRoom = await RoomModel.findByIdAndUpdate(roomId, room);
+            console.log(existingRoom);
             if (!existingRoom) {
                 return res.status(404).json({ message: "Room not found" });
             }
-            return await RoomModel.updateOne({ roomId: roomId }, room);
+            return existingRoom;
+
         } catch (error) {
             return res.status(500).json({ message: "Error while updating room" });
         }
@@ -95,8 +92,6 @@ export class RoomService {
     public async changeStatusRoom(req: Request, res: Response) {
         const roomId = req.params.roomId;
         const status = req.body.roomStatus;
-        console.log(status);
-        console.log(roomId);
         if (status === "") {
             return res.status(404).json({ message: "Status is required to found room" });
         }
@@ -107,12 +102,28 @@ export class RoomService {
             return res.status(404).json({ message: "RoomId is required to found room" });
         }
         try {
-            return await RoomModel.updateOne({ roomId: roomId }, { roomStatus: status });
+            return await RoomModel.findByIdAndUpdate(roomId, { roomStatus: status });
         } catch (error) {
             return res.status(500).json({ message: "Error while updating room status" });
         }
 
     }
+
+    public async addRoomOwner(roomId: string, userId: string) {
+        verifyObjectId(roomId);
+        verifyObjectId(userId);
+        try {
+            const user = await UserModel.findById(userId);
+            const room = await RoomModel.findByIdAndUpdate(roomId, { ownerUserId: userId });
+            if (!room || !user) {
+                throw new Error("Room or user not found");
+            }
+            return room;
+        } catch (error) {
+            throw new Error("Error while adding room owner");
+        }
+    }
+
 
     buildRouter(): Router {
         const router = Router();
