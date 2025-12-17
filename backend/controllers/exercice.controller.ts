@@ -6,31 +6,48 @@ export class ExerciseController {
         this.exerciseService = exerciseService
     }
     async getAllExercises(req: Request, res: Response) {
-        const exercises = await this.exerciseService.getAllExercises(req, res);
-        res.json(exercises);
+        try {
+            const exercises = await this.exerciseService.getAllExercises();
+            return res.status(200).json(exercises)
+        } catch (error) {
+            return res.status(500).json({ message: "Error while getting all exercises" });
+        }
     }
 
     async deleteExercise(req: Request, res: Response) {
-        const exercises = await this.exerciseService.deleteExercise(req, res);
-        res.json(exercises);
+        const id = req.params.id;
+        try {
+            const exercises = await this.exerciseService.deleteExercise(id);
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(500).json({ message: "Error while deleting exercise" });
+        }
     }
 
     async createExercise(req: Request, res: Response) {
-        const exercises = await this.exerciseService.createExercise(req, res);
-        res.json(exercises);
+        try {
+            const exercises = await this.exerciseService.createExercise(req, res);
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(500).json({ message: "Error while creating exercise" });
+        }
     }
 
     async updateExercise(req: Request, res: Response) {
-        const exercises = await this.exerciseService.updateExercise(req, res);
-        res.json(exercises);
+        try {
+            const exercises = await this.exerciseService.updateExercise(req, res);
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(500).json({ message: "Error while updating exercise" });
+        }
     }
 
     buildRouter(): Router {
         const router = Router();
         router.get('/', this.getAllExercises.bind(this));
-        router.delete('/:uid', this.deleteExercise.bind(this));
+        router.delete('/:id', this.deleteExercise.bind(this));
         router.post('/', this.createExercise.bind(this));
-        router.put('/:uid', this.updateExercise.bind(this));
+        router.put('/:id', this.updateExercise.bind(this));
         return router;
     }
 

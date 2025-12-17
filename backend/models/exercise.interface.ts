@@ -1,7 +1,8 @@
+import { Types } from "mongoose";
 import { Difficulty } from "./room.interface";
 
 export interface Exercise {
-    uid: string,
+    _id: Types.ObjectId,
     name: string,
     description: string,
     muscle: string,

@@ -1,36 +1,26 @@
 import { Request, Response, Router } from "express";
 import { ExerciseModel } from "./schema/exercices.schema";
+import { verifyObjectId } from "../fonction";
 
 
 export class ExerciseService {
 
-
-
-    public async getAllExercises(req: Request, res: Response) {
+    public async getAllExercises() {
         try {
             const exercises = await ExerciseModel.find()
             return exercises
         } catch (error) {
-            console.error("Error while getting all exercises", error)
-            return res.status(500).json({ message: "Error while getting all exercises" });
+            throw new Error("Error while getting all users");
         }
     }
 
-    public async deleteExercise(req: Request, res: Response) {
-        const uid = req.params.uid;
+    public async deleteExercise(id: string) {
+        verifyObjectId(id);
         try {
-            if (uid === "") {
-                return res.status(404).json({ message: "Exercise not found" });
-            }
-            const existingExercise = await ExerciseModel.findOne({ uid: uid });
-            if (!existingExercise) {
-                return res.status(404).json({ message: "Exercise not found" });
-            }
-            console.log("Deleting exercise")
-            return await ExerciseModel.deleteOne({ uid: uid })
+            return await ExerciseModel.findByIdAndDelete(id);
 
         } catch (error) {
-            return res.status(500).json({ message: "Error while deleting exercise" });
+            throw new Error("Error while deleting exercise");
         }
     }
 
@@ -53,30 +43,22 @@ export class ExerciseService {
     }
 
     public async updateExercise(req: Request, res: Response) {
-        const uid = req.params.uid;
+        const id = req.params.id;
         const exercise = req.body;
-        if (uid === "") {
-            return res.status(404).json({ message: "Uid is required to found " });
+        if (id === "") {
+            return res.status(404).json({ message: "Id is required to found " });
         }
         try {
-            const existingExercise = await ExerciseModel.findOne({ uid: uid });
+            const existingExercise = await ExerciseModel.findOne({ id: id });
             if (!existingExercise) {
                 return res.status(404).json({ message: "Exercise not found" });
             }
-            return await ExerciseModel.updateOne({ uid: uid }, exercise);
+            return await ExerciseModel.updateOne({ id: id }, exercise);
         } catch (error) {
             return res.status(500).json({ message: "Error while updating exercise" });
         }
     }
 
-    buildRouter(): Router {
-        const router = Router();
-        router.get('/exercises', this.getAllExercises.bind(this));
-        router.delete('/exercises/:uid', this.deleteExercise.bind(this));
-        router.post('/exercises', this.createExercise.bind(this));
-        router.put('/exercises/:uid', this.updateExercise.bind(this));
-        return router;
-    }
 
 }
 
