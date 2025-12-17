@@ -8,18 +8,43 @@ export class UserController {
         this.userService = userService
     }
     async getAllUsers(req: Request, res: Response) {
-        const users = await this.userService.getAllUsers();
-        res.json(users);
+        try {
+            const users = await this.userService.getAllUsers();
+            return res.status(200).json(users)
+        } catch (error) {
+            return res.status(500).json({ message: "Error while getting all users" });
+        }
     }
 
     async desactivateUser(req: Request, res: Response) {
-        const user = await this.userService.desactivateUser(req, res);
-        res.json(user);
+        try {
+            const id = req.params.id;
+            const user = await this.userService.desactivateUser(id);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+
+            return res.status(200).json({ message: "User desactivated successfully", user });
+
+        } catch (error: any) {
+            return res.status(400).json({ message: "Error while desactivating user:   ", error });
+        }
     }
 
     async activateUser(req: Request, res: Response) {
-        const user = await this.userService.activateUser(req, res);
-        res.json(user);
+        try {
+            const id = req.params.id;
+            const user = await this.userService.activateUser(id);
+
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+
+            return res.status(200).json({ message: "User activated successfully", user });
+
+        } catch (error: any) {
+            return res.status(400).json({ message: "Error while activating user:   ", error });
+        }
     }
 
     buildRouter(): Router {
