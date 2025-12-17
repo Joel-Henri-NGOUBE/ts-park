@@ -3,6 +3,7 @@ import { OpenMongooseConnection } from "./services/utils";
 import { AuthController } from "./controllers";
 import express from "express"
 import Cors from "cors"
+import { ChallengeController } from "./controllers/challenge.controller";
 import { UserController } from "./controllers/user.controller";
 import { UserService } from "./services";
 import { ExerciseController } from "./controllers/exercice.controller";
@@ -29,11 +30,13 @@ const roomService = new RoomService();
 // const userModel = getUserModel()
 
 const authController = new AuthController()
+const challengeController = new ChallengeController()
 const userController = new UserController(userService)
 const exerciseController = new ExerciseController(exerciseService)
 const roomController = new RoomController(roomService)
 
 app.use("/auth", authController.buildRouter())
+app.use("/challenge", challengeController.buildRouter())
 app.use("/users", userController.buildRouter())
 app.use("/exercises", exerciseController.buildRouter())
 app.use("/rooms", roomController.buildRouter())

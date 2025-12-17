@@ -1,9 +1,12 @@
+import mongoose from "mongoose"
 import { Difficulty } from "./room.interface"
 
-type ChallengeType = "room" | "user" | "social"
+export type ChallengeType = "room" | "user" | "social"
+
 export interface Challenge{
+    _id: mongoose.Types.ObjectId
     name: string,
-    userId?: string,
+    userId?: mongoose.Types.ObjectId,
     type: ChallengeType,
     difficulty?: Difficulty
 }
