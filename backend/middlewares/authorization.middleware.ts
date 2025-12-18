@@ -11,11 +11,15 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction){
         return res.status(401).end();
     }
     const token = authMembers[1]
+    let jwtErrorOccured = false
     const payload = jwt.verify(token, process.env.JWT_SECRET as string, (error) => {
         if(error){
-           return res.status(401).json({"message": "Something went wrong with your session token"})
+            jwtErrorOccured = true
         }
     })
+    if(jwtErrorOccured){
+        return res.status(401).json({"message": "Something went wrong with your session token"})
+    }
     res.locals.token = payload
     next()
 }
