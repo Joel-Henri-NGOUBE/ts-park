@@ -53,6 +53,26 @@ export class ChallengeController{
         return { token, payload }
     }
 
+    async shareChallenge(req: Request, res: Response){
+        const id = req.params.id
+        
+        this.challengeModel.updateOne({
+            "_id": new mongoose.Types.ObjectId(id)
+        },{
+            shared: true
+        })
+    }
+
+    async getUserChallenges(req: Request, res: Response){
+        const id = req.params.id
+        
+        const userChallenges = await this.challengeModel.find({
+            userId: new mongoose.Types.ObjectId(id),
+            shared: true
+        })
+        res.json(userChallenges)
+    }
+
     async register(req: Request, res: Response){
         const { token , payload } = this.getPayload(req)
         const id = req.params.id
@@ -67,11 +87,12 @@ export class ChallengeController{
 
     async create(req: Request, res: Response){
         const { token , payload } = this.getPayload(req)
-        const { name, difficulty, exercises } = req.body
+        const { name, difficulty, exercises, isSocial, share } = req.body
         const inserted = await this.challengeModel.insertOne({
             name: name,
             userId: new mongoose.Types.ObjectId((payload as User)._id),
-            type: "user",
+            type: isSocial ? "social" : "user",
+            shared: share === true ? share : false,
             difficulty: difficulty
         })
         console.log(inserted)
@@ -88,6 +109,8 @@ export class ChallengeController{
     buildRouter(): Router{
         const router: Router = Router();
         router.post("/create", this.create.bind(this))
+        router.post("/user/:id", this.getUserChallenges.bind(this))
+        router.post("/share/:id", this.shareChallenge.bind(this))
         router.post("/register/:id", this.register.bind(this))
         // router.post("/signup", this.signup.bind(this))
         return router

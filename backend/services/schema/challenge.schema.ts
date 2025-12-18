@@ -12,6 +12,12 @@ export function getChallengeSchema(): Schema<Challenge>{
         userId: {
             type: mongoose.Types.ObjectId,
         },
+        roomId: {
+            type: mongoose.Types.ObjectId,
+        },
+        shared: {
+            type: Boolean
+        },
         type: {
             type: String,
             required: true,
