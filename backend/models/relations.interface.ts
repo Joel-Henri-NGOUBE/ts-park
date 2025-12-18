@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
 export interface Relations{
-    userId1: mongoose.Types.ObjectId,
-    userId2: mongoose.Types.ObjectId
+    user1Id: mongoose.Types.ObjectId,
+    user2Id: mongoose.Types.ObjectId
 }

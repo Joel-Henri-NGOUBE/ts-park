@@ -1,9 +1,15 @@
 import { Request, Response, Router } from "express";
 import { UserService } from "../services";
-
+import { getRoomUserModel } from "../services/schema/room_user.schema";
+import { getRelationsModel } from "../services/schema/relation.schema";
+import jwt from "jsonwebtoken"
+import { User } from "../models";
+import mongoose from "mongoose";
 
 export class UserController {
     private userService: UserService
+    private roomUserModel = getRoomUserModel()
+    private relationsModel = getRelationsModel()
     constructor(userService: UserService) {
         this.userService = userService
     }
@@ -47,9 +53,36 @@ export class UserController {
         }
     }
 
+    private getPayload(req: Request){
+        const token = req.headers?.authorization?.split(" ")[1]
+        const payload = jwt.verify(token as string, process.env.JWT_SECRET as string)
+
+        return { token, payload }
+    }
+
+    public async joinRoom(req: Request, res: Response){
+        const id = req.params.id
+        const {token, payload} = this.getPayload(req)
+        this.roomUserModel.insertOne({
+            userId: new mongoose.Types.ObjectId((payload as User)._id),
+            roomId: new mongoose.Types.ObjectId(id)
+        })
+    }
+
+    public async makeRelation(req: Request, res: Response){
+        const id = req.params.id
+        const {token, payload} = this.getPayload(req)
+        this.relationsModel.insertOne({
+            user1Id: new mongoose.Types.ObjectId((payload as User)._id),
+            user2Id: new mongoose.Types.ObjectId(id)
+        })
+    }
+
     buildRouter(): Router {
         const router = Router();
         router.get('/', this.getAllUsers.bind(this));
+        router.get('/join_room/:id', this.joinRoom.bind(this));
+        router.get('/relate/:id', this.joinRoom.bind(this));
         router.put('/:id/activate', this.activateUser.bind(this));
         router.put('/:id/desactivate', this.desactivateUser.bind(this));
         return router;
