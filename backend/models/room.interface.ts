@@ -1,6 +1,8 @@
+import { Types } from "mongoose";
+
 export type Difficulty = "Easy" | "Medium" | "Hard";
 export interface Room {
-    roomId: string,
+    _id: Types.ObjectId,
     name: string,
     ownerUserId: string,
     capacity: number,

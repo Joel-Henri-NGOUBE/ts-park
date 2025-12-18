@@ -1,9 +1,8 @@
-import mongoose from "mongoose"
+import { Types } from "mongoose";
 
 type UserRole = "superadmin" | "manager" | "user"
 export interface User {
-    uid: string,
-    _id: mongoose.Types.ObjectId
+    _id: Types.ObjectId,
     username: string,
     password: string,
     token: string,

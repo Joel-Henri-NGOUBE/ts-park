@@ -2,11 +2,6 @@ import { model, Model, Schema, models } from "mongoose";
 import { Exercise } from "../../models";
 
 const ExerciseSchema = new Schema<Exercise>({
-    uid: {
-        type: String,
-        required: true,
-        unique: true
-    },
     name: {
         type: String,
         required: true,

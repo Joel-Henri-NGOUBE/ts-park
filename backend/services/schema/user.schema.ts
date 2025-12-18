@@ -11,6 +11,11 @@ const UserSchema = new Schema<User>({
         type: String,
         required: true,
     },
+    score: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     token: {
         type: String
     },

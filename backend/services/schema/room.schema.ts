@@ -2,10 +2,6 @@ import { Model, model, models, Schema } from "mongoose";
 import { Room } from "../../models";
 
 const RoomSchema = new Schema<Room>({
-    roomId: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
