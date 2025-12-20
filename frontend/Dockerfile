@@ -2,11 +2,7 @@ FROM node:22.18-alpine3.21
 
 WORKDIR /frontend
 
-RUN cat ./index.html
-
-RUN cat ./package.json
-
-COPY ./package.json /frontend
+COPY package.json /frontend
 
 COPY . /frontend
 
