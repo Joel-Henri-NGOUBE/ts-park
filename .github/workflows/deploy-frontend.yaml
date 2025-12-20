@@ -1,0 +1,34 @@
+
+name: TS Park Frontend Deploy
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  audit:
+    uses: './.github/workflows/audit.yaml'
+
+  deploy:
+    needs: [audit]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Connexion à DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build de l'image docker contenant le contenu du dépôt
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile 
+          push: true
+          tags: ${{ secrets.DOCKER_USER }}/ts-park-frontend:v1.0.1
+
+      # - name: Trigger a the deploy
+      #   run: curl ${{ secrets.TRIGGER_DEPLOY_URL }}

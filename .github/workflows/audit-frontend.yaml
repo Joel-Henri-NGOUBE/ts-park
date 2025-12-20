@@ -1,0 +1,31 @@
+name: TS Park Frontend Audit
+
+on:
+  workflow_call:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
+
+jobs:
+  audit:
+    name: Run audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.18
+
+      - name: Install dependencies
+        run: npm install
+      
+      # Executing the audit and defining its specifications
+      - name: Security Audit
+        run: npm audit --audit-level=critical --audit-level=high --dry-run > /tmp/security-audit-frontend.txt
