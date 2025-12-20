@@ -6,7 +6,7 @@ on:
 
 jobs:
   audit:
-    uses: './.github/workflows/audit.yaml'
+    uses: './.github/workflows/audit-frontend.yaml'
 
   deploy:
     needs: [audit]
