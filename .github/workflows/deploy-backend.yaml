@@ -7,7 +7,7 @@ on:
 
 jobs:
   audit:
-    uses: './.github/workflows/audit.yaml'
+    uses: './.github/workflows/audit-backend.yaml'
 
   deploy:
     needs: [audit]
