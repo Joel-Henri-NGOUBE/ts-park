@@ -21,7 +21,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use(Cors({ origin: "http://localhost:5173" }))
+app.use(Cors({ origin: ["http://localhost:5173", "https://ts-park-frontend-v1-0-1.onrender.com"] }))
 
 async function main() {
     await OpenMongooseConnection()
