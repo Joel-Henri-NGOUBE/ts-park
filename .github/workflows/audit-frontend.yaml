@@ -28,4 +28,4 @@ jobs:
       
       # Executing the audit and defining its specifications
       - name: Security Audit
-        run: npm audit --audit-level=critical --audit-level=high --dry-run
+        run: npm audit --audit-level=critical --audit-level=high --dry-run -C frontend
