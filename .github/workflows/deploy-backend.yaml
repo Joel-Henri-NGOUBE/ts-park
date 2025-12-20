@@ -3,7 +3,7 @@ name: TS Park Frontend Deploy
 on:
   push:
     branches: [ "main" ]
-    paths-ignore: frontend/*
+    paths-ignore: [frontend/*, "./.github/workflows/deploy-frontend.yaml"]
 
 jobs:
   audit:
