@@ -3,6 +3,7 @@ name: TS Park Frontend Deploy
 on:
   push:
     branches: [ "main" ]
+    paths-ignore: backend/*
 
 jobs:
   audit:

@@ -3,6 +3,7 @@ name: TS Park Frontend Deploy
 on:
   push:
     branches: [ "main" ]
+    paths-ignore: frontend/*
 
 jobs:
   audit:
@@ -30,5 +31,5 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USER }}/ts-park-backend:v1.0.1
 
-      # - name: Trigger a the deploy
-      #   run: curl ${{ secrets.TRIGGER_DEPLOY_URL }}
+      - name: Trigger a the deploy
+        run: curl ${{ secrets.TRIGGER_BACKEND_DEPLOY_URL }}
