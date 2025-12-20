@@ -25,10 +25,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
+          context: ./backend
+          file: ./backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/ts-park-frontend:v1.0.1
+          tags: ${{ secrets.DOCKER_USER }}/ts-park-backend:v1.0.1
 
-      - name: Trigger a the deploy
-        run: curl ${{ secrets.TRIGGER_DEPLOY_URL }}
+      # - name: Trigger a the deploy
+      #   run: curl ${{ secrets.TRIGGER_DEPLOY_URL }}
