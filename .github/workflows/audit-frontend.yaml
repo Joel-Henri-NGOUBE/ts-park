@@ -24,7 +24,7 @@ jobs:
           node-version: 22.18
 
       - name: Install dependencies
-        run: npm install
+        run: npm install -C frontend
       
       # Executing the audit and defining its specifications
       - name: Security Audit
