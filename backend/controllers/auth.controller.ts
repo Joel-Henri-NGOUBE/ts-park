@@ -38,7 +38,7 @@ export class AuthController {
         const { username, password } = req.body
 
 
-        await this.userModel.insertMany({
+        await this.userModel.insertOne({
             username: username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
             token: "",
