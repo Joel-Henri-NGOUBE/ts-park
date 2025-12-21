@@ -123,6 +123,73 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "join room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Défi Endurance\",\n  \"type\": \"room\",\n  \"roomId\":\"5\",\n  \"difficulty\": \"Medium\",\n  \"shared\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user/join_room/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"join_room",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "relate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/relate/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"relate",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -401,7 +468,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "6948006fd2359a3d70b0c128"
 								}
 							]
 						},
@@ -428,6 +495,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtiR1ZWY0c5WmEyUnFZVlU1Y0ZOcmJGWmxhMnQ0Vkcxc1MwOVROV3hsVlhCdFdWWmtVbUZWT1hCVFZFcFFWa1pGTUZSVlVrSk5iSEIwVlZoc1RtVnNWVEZYVmxKUFlUQTFObEZ0YkU1U01ERTBWRmR3YW1GVmVFUlRha1pxVFd4YU5WbHRNVWRrUm5CVVUxUmFTbUpWV25KWmJHUnpaRlZzY0dReWJHcFNNRm8yV1hwT2EyUnRUblJWVjJ4UVlWVnNjbFJYTVVwaE1ERlZVVmQwVmsxdVVrZFpha0l6VGtkT1dGbDZUbXBOYWxaWlYxWlNRbVJXY0VaUFZWSlhUV3MxTkZkc2FIZE9iVlowWWpOd1ZrMUZjRmhhUnpWaFV6Rk5kMDVZV21wTlIzTjRWbFZrZDAweVRraGFSVlpxVWxkM2VWbFhjR3RVYTNoMFVsZHNUVkV3Y0RaWFZFazFaVlp3VkZOVVdrNVdSV3d6VkZWT00yRlhVa2hQV0VwaFZucFNjRlF5YkV0aVIxWldZMGM1V21FeVVuRlpWbFUxWTBaT2NtSkdXbXhoTW5RMFZrY3hjMU13T1ZST1YzaHNWbGhDZEZkV1dtdFZiVVpXVDFoQ1ZGWkZjRkZXYTFwR1RVWlNWbFZyU2s1aVNFSXdWbFpvYzFSdFZuTldWRVpZVm14S1VGbFVRVEZPYkVaMFlrVTFVMDFFUlRCV1JtUjNZVzFHVm1WRlVsUmhhMXB4VkZkNFlVNVdiSFJOVldSclVtNUNWVlV4VW1GVGJVcFdWMjVLV21KSFVucGFSbFp6WTBkUmVXSkhjRk5OUm04eVYxaHdUMkV5VW5SVWJsSldWako0VVZsV1ZuTmpiRkpZVFZWd2FFMUVSbFpWVm1Rd1Ztc3hkVlZyWkZwaGEwbDZWR3RrVDFkR2JEWlViWEJPWVd4YVdsWXhXbE5SYlZKWFkwVmFVRlpXU2xoVVYzTXhUa1prYzJGSVpFOWlWbG93V1dwT2QxWnJNVVpqUm1oaFVucFdhRlY2Ums1a01EVlpWMjF3VGxJelRqUldiRlpyWkRBd2VWUnJhR0ZTVmxweFZXeGtNMlZXYkZoalIzUlZZVE5vTUZWc1pITlVWa1YzWTBSYVdGWkZhekZhVmxwM1ZrWk9WVmRyTlZkU1YzZDZWa1pXVDAweVJsaFZhMmhRVjBWd2FGWnVjRk5qUmxGNVlrVjBUbEpVUmxWVk1XaFBVMjFLV0dWRVdsWldiVkpRVkZWa1IxZFdaSFJsUlhCb1ltdEdNMWRVU1RGV01rcEdaVVZTVkdKdGVIQlVWelZ2WXpGT1dHTklXbWhXTURFMlZtMDFhMWxXWkVaalJ6bFlZVEpPTkZrd1pFdGpSazVaVkd0d2FWWlVWVEZXTW5oclVqQXhSMk5HYUZaaE1IQnlWVlJDY2sxc1RsaGpSWEJyVFVSR2VGWnNhRk5VYkZwR1lrUkNWVll6UWtoV2JGVjRWbFpXVlZkck5WZFNWRUY1VmtaV1UxUnRVbFpQVmxaWVYwZG9XVmxXVm5ObGJFNVlUbFprYTAxWVFrbFZiWEJEV1ZaWmVGTnJUbUZTVlRWTFZHMTBjMk5XVGxsYVJUVm9Za1paZDFaR1dsTlRiVkpHVFZoR1UySkdXazlXYTFwR1RXeFNWMVZyTlU5aGVrWkdWa1pvVjFWR1drZGlSRkpYVFcxNFRGUXhUVEZWUlRWSlUxaG9WMkY2Vm5oVmFrWjNVV3hGZDFWdFdsWmhiV2hTV2tab2RrMVZPVmxYYlRWT1ZrWldNMVl5Y0hOaU1WcFhVMjE0V1UweFdsZFZWbVJYVm1zeFdHSkhhRTlUUmtsNlUxZHNNMkZYUmxsVWEwcGFUVEZLZDFwSE1WWmhWVGwxVlc1c2ExWXhWbnBUVnpWTFpHMUtTRlpYYkZCaFZYQTJXa1pvUTJKSFRuUlNiWFJwVmpKNE1WTlhiRE5oVm10NlUyMTRXbGRHU25OWGExWkhUVVZzY1dJeWJFNWhhMFkxVkd4TmQyVkZNWEJOU0d4T1ZteEdORlJyVW5abFJURTJZak5rVG1WVVVURlViWEJIV1ZWc2NHUXliR3RYUlVweVYxWm9VMkpHY0VaU2FrSktZVzA1Y0ZSWGNFSmxWVFZVVFVob1RtRlVRalZVVmxwU1pVVTFWV0l6YUU5aGJUaDRWR3ROTUdWck9VVlJiVVpLWW1wQmRVNHhTbmRsYWs1WVZUSkdVVXhVYkUxbFNGWXdWRzVvUjFGdE9YcGhlVEZwWW14Uk0xWkVUbTVhUnpWVVVsZE9UMlJXYnpSaGJGb3pUa05KYzBsdGJIcFJWMDR3WVZoYWJFbHFjREJqYmxac1RFTktlV0l5ZUd4SmFtOXBZek5XZDFwWVNtaGFSekZ3WW1sSmMwbHRUbmxhVjBZd1dsZFNRbVJEU1RaSmFrbDNUV3BWZEUxVVNYUk5ha1pWVFZSUk5rMVVUVFpOUkUxMVQxUlplRmRwU1hOSmJsWjNXa2RHTUZwWFVrSmtRMGsyU1dwSmQwMXFWWFJOVkVsMFRXcEdWVTFVVlRaTmFrMDJUV3BaZFU1VWF6TlhhVW81TGtwd2NUQm5NVzFPTjBWV2RqSk1aWFZDY0hkT1l6QklhVk14Wm5wR1dWVjBNVEpVWVVoc1kyRnJSRGdpTENKcGMwRmpkR2wyWlNJNmRISjFaU3dpY205c1pTSTZJbk4xY0dWeVlXUnRhVzRpTENKamNtVmhkR1ZrUVhRaU9pSXlNREkxTFRFeUxUSXhWREUwT2pFek9qQXpMamsyTVZvaUxDSjFjR1JoZEdWa1FYUWlPaUl5TURJMUxURXlMVEl4VkRFMU9qSTJPak14TGpJME1Wb2lmUS5uWElaVUF3cVF6c2NfdjRpMnB2TDlIajEtM3FnekEwOHJibVR4VDhtSjZBIiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDoxMzowMy45NjFaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNToyOToyMC44ODBaIn0.V2EXGkLlL-fBFtyrLOAzaxcOP24TNRCy4q2XC25ND_M",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -451,7 +528,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "69480070d2359a3d70b0c136"
 								}
 							]
 						},
@@ -587,13 +664,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/rooms/69432d7ddae32237baa1c796",
+							"raw": "{{base_url}}/rooms/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"rooms",
-								"69432d7ddae32237baa1c796"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6948006fd2359a3d70b0c12c"
+								}
 							]
 						}
 					},
@@ -628,6 +711,16 @@
 				{
 					"name": "ChangeStatus",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtiR1ZWY0c5WmEyUnFZVlU1Y0ZOcmJGWmxhMnQ0Vkcxc1MwOVROV3hsVlhCdFdWWmtVbUZWT1hCVFZFcFFWa1pGTUZSVlVrSk5iSEIwVlZoc1RtVnNWVEZYVmxKUFlUQTFObEZ0YkU1U01ERTBWRmR3YW1GVmVFUlRha1pxVFd4YU5WbHRNVWRrUm5CVVUxUmFTbUpWV25KWmJHUnpaRlZzY0dReWJHcFNNRm8yV1hwT2EyUnRUblJWVjJ4UVlWVnNjbFJYTVVwaE1ERlZVVmQwVmsxdVVrZFpha0l6VGtkT1dGbDZUbXBOYWxaWlYxWlNRbVJXY0VaUFZWSlhUV3MxTkZkc2FIZE9iVlowWWpOd1ZrMUZjRmhhUnpWaFV6Rk5kMDVZV21wTlIzTjRWbFZrZDAweVRraGFSVlpxVWxkM2VWbFhjR3RVYTNoMFVsZHNUVkV3Y0RaWFZFazFaVlp3VkZOVVdrNVdSV3d6VkZWT00yRlhVa2hQV0VwaFZucFNjRlF5YkV0aVIxWldZMGM1V21FeVVuRlpWbFUxWTBaT2NtSkdXbXhoTW5RMFZrY3hjMU13T1ZST1YzaHNWbGhDZEZkV1dtdFZiVVpXVDFoQ1ZGWkZjRkZXYTFwR1RVWlNWbFZyU2s1aVNFSXdWbFpvYzFSdFZuTldWRVpZVm14S1VGbFVRVEZPYkVaMFlrVTFVMDFFUlRCV1JtUjNZVzFHVm1WRlVsUmhhMXB4VkZkNFlVNVdiSFJOVldSclVtNUNWVlV4VW1GVGJVcFdWMjVLV21KSFVucGFSbFp6WTBkUmVXSkhjRk5OUm04eVYxaHdUMkV5VW5SVWJsSldWako0VVZsV1ZuTmpiRkpZVFZWd2FFMUVSbFpWVm1Rd1Ztc3hkVlZyWkZwaGEwbDZWR3RrVDFkR2JEWlViWEJPWVd4YVdsWXhXbE5SYlZKWFkwVmFVRlpXU2xoVVYzTXhUa1prYzJGSVpFOWlWbG93V1dwT2QxWnJNVVpqUm1oaFVucFdhRlY2Ums1a01EVlpWMjF3VGxJelRqUldiRlpyWkRBd2VWUnJhR0ZTVmxweFZXeGtNMlZXYkZoalIzUlZZVE5vTUZWc1pITlVWa1YzWTBSYVdGWkZhekZhVmxwM1ZrWk9WVmRyTlZkU1YzZDZWa1pXVDAweVJsaFZhMmhRVjBWd2FGWnVjRk5qUmxGNVlrVjBUbEpVUmxWVk1XaFBVMjFLV0dWRVdsWldiVkpRVkZWa1IxZFdaSFJsUlhCb1ltdEdNMWRVU1RGV01rcEdaVVZTVkdKdGVIQlVWelZ2WXpGT1dHTklXbWhXTURFMlZtMDFhMWxXWkVaalJ6bFlZVEpPTkZrd1pFdGpSazVaVkd0d2FWWlVWVEZXTW5oclVqQXhSMk5HYUZaaE1IQnlWVlJDY2sxc1RsaGpSWEJyVFVSR2VGWnNhRk5VYkZwR1lrUkNWVll6UWtoV2JGVjRWbFpXVlZkck5WZFNWRUY1VmtaV1UxUnRVbFpQVmxaWVYwZG9XVmxXVm5ObGJFNVlUbFprYTAxWVFrbFZiWEJEV1ZaWmVGTnJUbUZTVlRWTFZHMTBjMk5XVGxsYVJUVm9Za1paZDFaR1dsTlRiVkpHVFZoR1UySkdXazlXYTFwR1RXeFNWMVZyTlU5aGVrWkdWa1pvVjFWR1drZGlSRkpYVFcxNFRGUXhUVEZWUlRWSlUxaG9WMkY2Vm5oVmFrWjNVV3hGZDFWdFdsWmhiV2hTV2tab2RrMVZPVmxYYlRWT1ZrWldNMVl5Y0hOaU1WcFhVMjE0V1UweFdsZFZWbVJYVm1zeFdHSkhhRTlUUmtsNlUxZHNNMkZYUmxsVWEwcGFUVEZLZDFwSE1WWmhWVGwxVlc1c2ExWXhWbnBUVnpWTFpHMUtTRlpYYkZCaFZYQTJXa1pvUTJKSFRuUlNiWFJwVmpKNE1WTlhiRE5oVm10NlUyMTRXbGRHU25OWGExWkhUVVZzY1dJeWJFNWhhMFkxVkd4TmQyVkZNWEJOU0d4T1ZteEdORlJyVW5abFJURTJZak5rVG1WVVVURlViWEJIV1ZWc2NHUXliR3RYUlVweVYxWm9VMkpHY0VaU2FrSktZVzA1Y0ZSWGNFSmxWVFZVVFVob1RtRlVRalZVVmxwU1pVVTFWV0l6YUU5aGJUaDRWR3ROTUdWck9VVlJiVVpLWW1wQmRVNHhTbmRsYWs1WVZUSkdVVXhVYkUxbFNGWXdWRzVvUjFGdE9YcGhlVEZwWW14Uk0xWkVUbTVhUnpWVVVsZE9UMlJXYnpSaGJGb3pUa05KYzBsdGJIcFJWMDR3WVZoYWJFbHFjREJqYmxac1RFTktlV0l5ZUd4SmFtOXBZek5XZDFwWVNtaGFSekZ3WW1sSmMwbHRUbmxhVjBZd1dsZFNRbVJEU1RaSmFrbDNUV3BWZEUxVVNYUk5ha1pWVFZSUk5rMVVUVFpOUkUxMVQxUlplRmRwU1hOSmJsWjNXa2RHTUZwWFVrSmtRMGsyU1dwSmQwMXFWWFJOVkVsMFRXcEdWVTFVVlRaTmFrMDJUV3BaZFU1VWF6TlhhVW81TGtwd2NUQm5NVzFPTjBWV2RqSk1aWFZDY0hkT1l6QklhVk14Wm5wR1dWVjBNVEpVWVVoc1kyRnJSRGdpTENKcGMwRmpkR2wyWlNJNmRISjFaU3dpY205c1pTSTZJbk4xY0dWeVlXUnRhVzRpTENKamNtVmhkR1ZrUVhRaU9pSXlNREkxTFRFeUxUSXhWREUwT2pFek9qQXpMamsyTVZvaUxDSjFjR1JoZEdWa1FYUWlPaUl5TURJMUxURXlMVEl4VkRFMU9qSTJPak14TGpJME1Wb2lmUS5uWElaVUF3cVF6c2NfdjRpMnB2TDlIajEtM3FnekEwOHJibVR4VDhtSjZBIiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDoxMzowMy45NjFaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNToyOToyMC44ODBaIn0.V2EXGkLlL-fBFtyrLOAzaxcOP24TNRCy4q2XC25ND_M",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -640,14 +733,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/rooms/room-001/status",
+							"raw": "{{base_url}}/rooms/:id/status",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"rooms",
-								"room-001",
+								":id",
 								"status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6948006fd2359a3d70b0c12d"
+								}
 							]
 						}
 					},
@@ -940,6 +1039,123 @@
 			]
 		},
 		{
+			"name": "Challenge",
+			"item": [
+				{
+					"name": "register challen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/challenge/register/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"challenge",
+								"register",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user challenge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/challenge/user/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"challenge",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "share",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/challenge/share/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"challenge",
+								"share",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Challenge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Défi Endurance\",\n  \"type\": \"room\",\n  \"roomId\":\"5\",\n  \"difficulty\": \"Medium\",\n  \"shared\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/challenge/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"challenge",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login",
 			"request": {
 				"auth": {
@@ -956,7 +1172,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"admin\"\n}",
+					"raw": "{\n\t\"username\": \"manager\",\n\t\"password\": \"admin\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
