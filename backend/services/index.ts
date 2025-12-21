@@ -1,1 +1,6 @@
 export * from "./user.services"
+export * from "./yangaMachine.services"
+export * from "./badge.services"
+export * from "./exercice.services"
+export * from "./room.services"
+export * from "./userBadge.services"
