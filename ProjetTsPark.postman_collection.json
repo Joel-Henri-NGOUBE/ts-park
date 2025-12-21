@@ -1,0 +1,1037 @@
+{
+	"info": {
+		"_postman_id": "100544f4-33fc-4a32-acad-f7da73bd2176",
+		"name": "Projet TsPark",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46818420",
+		"_collection_link": "https://davidvalerius.postman.co/workspace/tsPark~7c1076c4-35f5-42dc-b576-aac07854e216/collection/46818420-100544f4-33fc-4a32-acad-f7da73bd2176?action=share&source=collection_link&creator=46818420"
+	},
+	"item": [
+		{
+			"name": "Administration",
+			"item": [
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJ0MSIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiJ9.O4r1VNjGZACD_R8Puz59vg150Z9hURe_uUAeU1ia4twsdsqdqdqs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Put DesacUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJ0MSIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiJ9.O4r1VNjGZACD_R8Puz59vg150Z9hURe_uUAeU1ia4tw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:id/desactivate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"desactivate"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6948072588b737f685bdac9a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put activUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJ0MSIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiJ9.O4r1VNjGZACD_R8Puz59vg150Z9hURe_uUAeU1ia4tw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:id/activate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"activate"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6948072588b737f685bdac9a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exercise",
+			"item": [
+				{
+					"name": "Get All Exercices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/exercises",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Exercice by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJ0MSIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiJ9.O4r1VNjGZACD_R8Puz59vg150Z9hURe_uUAeU1ia4tw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exercises/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "69480070d2359a3d70b0c13b"
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "AddExercice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJ0MSIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiJ9.O4r1VNjGZACD_R8Puz59vg150Z9hURe_uUAeU1ia4tw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Traction\",\n\t\"description\": \"Faire des Traction avec la barre\",\n\t\"uid\": \"14\",\n\t\"muscle\": \"dos\",\n\t\"difficulty\": \"Difficulty\",\n\t\"duration\": \"15\",\n\t\"calories\": \"145\",\n\t\"score\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exercises",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateExercice",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtNRTFUU1hOSmJXeDZVVmRPTUdGWVdteEphbkF3WTI1V2JFeERTbmxpTW5oc1NXcHZhV016Vm5kYVdFcG9Xa2N4Y0dKcFNYTkpiVTU1V2xkR01GcFhVa0prUTBrMlNXcEpkMDFxVlhSTlZFbDBUV3BHVlUxVVVUWk5WRTAyVFVSTmRVOVVXWGhYYVVselNXNVdkMXBIUmpCYVYxSkNaRU5KTmtscVNYZE5hbFYwVFZSSmRFMXFSbFZOVkZFMlRWUk5OazFFVFhWUFZGbDRWMmxLT1M1UE5ISXhWazVxUjFwQlEwUmZVamhRZFhvMU9YWm5NVFV3V2psb1ZWSmxYM1ZWUVdWVk1XbGhOSFIzSWl3aWFYTkJZM1JwZG1VaU9uUnlkV1VzSW5KdmJHVWlPaUp6ZFhCbGNtRmtiV2x1SWl3aVkzSmxZWFJsWkVGMElqb2lNakF5TlMweE1pMHlNVlF4TkRveE16b3dNeTQ1TmpGYUlpd2lkWEJrWVhSbFpFRjBJam9pTWpBeU5TMHhNaTB5TVZReE5Ub3hOam8xTkM0ek9EQmFJbjAuN1JwejNXU2FQLTlMeHV0TnhGQm9zay1iblQ3VDNnZG5TRWNOdVo4alZ3NCIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTU6MjM6MjYuNTk3WiJ9.Jpq0g1mN7EVv2LeuBpwNc0HiS1fzFYUt12TaHlcakD8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Traction Ultra\",\n\t\"description\": \"Faire des Traction avec la barre\",\n\t\"muscle\": \"dos\",\n\t\"difficulty\": \"Difficulty\",\n\t\"duration\": \"15\",\n\t\"calories\": \"145\",\n\t\"score\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exercises/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "69480070d2359a3d70b0c13c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Badge",
+			"item": [
+				{
+					"name": "Get All Badge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/badges",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"badges"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All AssignBadge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/badges/:id/assign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"badges",
+								":id",
+								"assign"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete badge by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/badges/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"badges",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "add badge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtNRTFUU1hOSmJXeDZVVmRPTUdGWVdteEphbkF3WTI1V2JFeERTbmxpTW5oc1NXcHZhV016Vm5kYVdFcG9Xa2N4Y0dKcFNYTkpiVTU1V2xkR01GcFhVa0prUTBrMlNXcEpkMDFxVlhSTlZFbDBUV3BHVlUxVVVUWk5WRTAyVFVSTmRVOVVXWGhYYVVselNXNVdkMXBIUmpCYVYxSkNaRU5KTmtscVNYZE5hbFYwVFZSSmRFMXFSbFZOVkZFMlRWUk5OazFFVFhWUFZGbDRWMmxLT1M1UE5ISXhWazVxUjFwQlEwUmZVamhRZFhvMU9YWm5NVFV3V2psb1ZWSmxYM1ZWUVdWVk1XbGhOSFIzSWl3aWFYTkJZM1JwZG1VaU9uUnlkV1VzSW5KdmJHVWlPaUp6ZFhCbGNtRmtiV2x1SWl3aVkzSmxZWFJsWkVGMElqb2lNakF5TlMweE1pMHlNVlF4TkRveE16b3dNeTQ1TmpGYUlpd2lkWEJrWVhSbFpFRjBJam9pTWpBeU5TMHhNaTB5TVZReE5Ub3hOam8xTkM0ek9EQmFJbjAuN1JwejNXU2FQLTlMeHV0TnhGQm9zay1iblQ3VDNnZG5TRWNOdVo4alZ3NCIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTU6MjM6MjYuNTk3WiJ9.Jpq0g1mN7EVv2LeuBpwNc0HiS1fzFYUt12TaHlcakD8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Venue\",\n\t\"score\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/badges",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"badges"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "assignBadge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtNRTFUU1hOSmJXeDZVVmRPTUdGWVdteEphbkF3WTI1V2JFeERTbmxpTW5oc1NXcHZhV016Vm5kYVdFcG9Xa2N4Y0dKcFNYTkpiVTU1V2xkR01GcFhVa0prUTBrMlNXcEpkMDFxVlhSTlZFbDBUV3BHVlUxVVVUWk5WRTAyVFVSTmRVOVVXWGhYYVVselNXNVdkMXBIUmpCYVYxSkNaRU5KTmtscVNYZE5hbFYwVFZSSmRFMXFSbFZOVkZFMlRWUk5OazFFVFhWUFZGbDRWMmxLT1M1UE5ISXhWazVxUjFwQlEwUmZVamhRZFhvMU9YWm5NVFV3V2psb1ZWSmxYM1ZWUVdWVk1XbGhOSFIzSWl3aWFYTkJZM1JwZG1VaU9uUnlkV1VzSW5KdmJHVWlPaUp6ZFhCbGNtRmtiV2x1SWl3aVkzSmxZWFJsWkVGMElqb2lNakF5TlMweE1pMHlNVlF4TkRveE16b3dNeTQ1TmpGYUlpd2lkWEJrWVhSbFpFRjBJam9pTWpBeU5TMHhNaTB5TVZReE5Ub3hOam8xTkM0ek9EQmFJbjAuN1JwejNXU2FQLTlMeHV0TnhGQm9zay1iblQ3VDNnZG5TRWNOdVo4alZ3NCIsImlzQWN0aXZlIjp0cnVlLCJyb2xlIjoic3VwZXJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjUtMTItMjFUMTQ6MTM6MDMuOTYxWiIsInVwZGF0ZWRBdCI6IjIwMjUtMTItMjFUMTU6MjM6MjYuNTk3WiJ9.Jpq0g1mN7EVv2LeuBpwNc0HiS1fzFYUt12TaHlcakD8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"badgeId\": \"69480070d2359a3d70b0c136\",\n\t\"userId\": \"6948006fd2359a3d70b0c128\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/badges/assign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"badges",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TrainingRoom",
+			"item": [
+				{
+					"name": "Get All Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDcyNTg4YjczN2Y2ODViZGFjOWEiLCJ1c2VybmFtZSI6ImFkbWludCIsInBhc3N3b3JkIjoiJDJiJDEwJFNrRW9MOHFnN3NuV2EwLmRPQ1djcWV6enpqM1NCVnZ2SktOb3NJNVBqd3BnRHBJdmo3TS5hIiwic2NvcmUiOjAsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKZmFXUWlPaUkyT1RRNE1EY3lOVGc0WWpjek4yWTJPRFZpWkdGak9XRWlMQ0oxYzJWeWJtRnRaU0k2SW1Ga2JXbHVkQ0lzSW5CaGMzTjNiM0prSWpvaUpESmlKREV3SkZOclJXOU1PSEZuTjNOdVYyRXdMbVJQUTFkamNXVjZlbnBxTTFOQ1ZuWjJTa3RPYjNOSk5WQnFkM0JuUkhCSmRtbzNUUzVoSWl3aWMyTnZjbVVpT2pBc0luUnZhMlZ1SWpvaUlpd2lhWE5CWTNScGRtVWlPblJ5ZFdVc0luSnZiR1VpT2lKMWMyVnlJaXdpWTNKbFlYUmxaRUYwSWpvaU1qQXlOUzB4TWkweU1WUXhORG8wTVRvME1TNDVORGRhSWl3aWRYQmtZWFJsWkVGMElqb2lNakF5TlMweE1pMHlNVlF4TkRvME1UbzBNUzQ1TkRkYUluMC5uUi1HOGhZZVpvdTdJejNXNkhFeThHMXpVYTRiTm9XWTV1Y1dTdmk3V1k0IiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDo0MTo0MS45NDdaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDo1MDozNS4yNThaIn0.dyiG_XcUKDqRtFi7d_KZctT_0AOuF56-uaxN-esrdkM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rooms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoomById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rooms/69432d7ddae32237baa1c796",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms",
+								"69432d7ddae32237baa1c796"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n  {\r\n    \"roomId\": \"room-007\",\r\n    \"name\": \"HEY SALLE\",\r\n    \"ownerUserId\": \"user-001\",\r\n    \"capacity\": 25,\r\n    \"difficulty\": \"medium\",\r\n    \"address\": \"12 rue des Sportifs, 75010 Paris\",\r\n    \"contact\": \"contact@ironparadise.fr\",\r\n    \"equipment\": \"Haltères, bancs, machines guidées\",\r\n    \"roomStatus\": \"Pending\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rooms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChangeStatus",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n  {\r\n    \"roomStatus\": \"Accepted\"\r\n  }\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rooms/room-001/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms",
+								"room-001",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtiR1ZWY0c5WmEyUnFZVlU1Y0ZOcmJGWmxhMnQ0Vkcxc1MwOVROV3hsVlhCdFdWWmtVbUZWT1hCVFZFcFFWa1pGTUZSVlVrSk5iSEIwVlZoc1RtVnNWVEZYVmxKUFlUQTFObEZ0YkU1U01ERTBWRmR3YW1GVmVFUlRha1pxVFd4YU5WbHRNVWRrUm5CVVUxUmFTbUpWV25KWmJHUnpaRlZzY0dReWJHcFNNRm8yV1hwT2EyUnRUblJWVjJ4UVlWVnNjbFJYTVVwaE1ERlZVVmQwVmsxdVVrZFpha0l6VGtkT1dGbDZUbXBOYWxaWlYxWlNRbVJXY0VaUFZWSlhUV3MxTkZkc2FIZE9iVlowWWpOd1ZrMUZjRmhhUnpWaFV6Rk5kMDVZV21wTlIzTjRWbFZrZDAweVRraGFSVlpxVWxkM2VWbFhjR3RVYTNoMFVsZHNUVkV3Y0RaWFZFazFaVlp3VkZOVVdrNVdSV3d6VkZWT00yRlhVa2hQV0VwaFZucFNjRlF5YkV0aVIxWldZMGM1V21FeVVuRlpWbFUxWTBaT2NtSkdXbXhoTW5RMFZrY3hjMU13T1ZST1YzaHNWbGhDZEZkV1dtdFZiVVpXVDFoQ1ZGWkZjRkZXYTFwR1RVWlNWbFZyU2s1aVNFSXdWbFpvYzFSdFZuTldWRVpZVm14S1VGbFVRVEZPYkVaMFlrVTFVMDFFUlRCV1JtUjNZVzFHVm1WRlVsUmhhMXB4VkZkNFlVNVdiSFJOVldSclVtNUNWVlV4VW1GVGJVcFdWMjVLV21KSFVucGFSbFp6WTBkUmVXSkhjRk5OUm04eVYxaHdUMkV5VW5SVWJsSldWako0VVZsV1ZuTmpiRkpZVFZWd2FFMUVSbFpWVm1Rd1Ztc3hkVlZyWkZwaGEwbDZWR3RrVDFkR2JEWlViWEJPWVd4YVdsWXhXbE5SYlZKWFkwVmFVRlpXU2xoVVYzTXhUa1prYzJGSVpFOWlWbG93V1dwT2QxWnJNVVpqUm1oaFVucFdhRlY2Ums1a01EVlpWMjF3VGxJelRqUldiRlpyWkRBd2VWUnJhR0ZTVmxweFZXeGtNMlZXYkZoalIzUlZZVE5vTUZWc1pITlVWa1YzWTBSYVdGWkZhekZhVmxwM1ZrWk9WVmRyTlZkU1YzZDZWa1pXVDAweVJsaFZhMmhRVjBWd2FGWnVjRk5qUmxGNVlrVjBUbEpVUmxWVk1XaFBVMjFLV0dWRVdsWldiVkpRVkZWa1IxZFdaSFJsUlhCb1ltdEdNMWRVU1RGV01rcEdaVVZTVkdKdGVIQlVWelZ2WXpGT1dHTklXbWhXTURFMlZtMDFhMWxXWkVaalJ6bFlZVEpPTkZrd1pFdGpSazVaVkd0d2FWWlVWVEZXTW5oclVqQXhSMk5HYUZaaE1IQnlWVlJDY2sxc1RsaGpSWEJyVFVSR2VGWnNhRk5VYkZwR1lrUkNWVll6UWtoV2JGVjRWbFpXVlZkck5WZFNWRUY1VmtaV1UxUnRVbFpQVmxaWVYwZG9XVmxXVm5ObGJFNVlUbFprYTAxWVFrbFZiWEJEV1ZaWmVGTnJUbUZTVlRWTFZHMTBjMk5XVGxsYVJUVm9Za1paZDFaR1dsTlRiVkpHVFZoR1UySkdXazlXYTFwR1RXeFNWMVZyTlU5aGVrWkdWa1pvVjFWR1drZGlSRkpYVFcxNFRGUXhUVEZWUlRWSlUxaG9WMkY2Vm5oVmFrWjNVV3hGZDFWdFdsWmhiV2hTV2tab2RrMVZPVmxYYlRWT1ZrWldNMVl5Y0hOaU1WcFhVMjE0V1UweFdsZFZWbVJYVm1zeFdHSkhhRTlUUmtsNlUxZHNNMkZYUmxsVWEwcGFUVEZLZDFwSE1WWmhWVGwxVlc1c2ExWXhWbnBUVnpWTFpHMUtTRlpYYkZCaFZYQTJXa1pvUTJKSFRuUlNiWFJwVmpKNE1WTlhiRE5oVm10NlUyMTRXbGRHU25OWGExWkhUVVZzY1dJeWJFNWhhMFkxVkd4TmQyVkZNWEJOU0d4T1ZteEdORlJyVW5abFJURTJZak5rVG1WVVVURlViWEJIV1ZWc2NHUXliR3RYUlVweVYxWm9VMkpHY0VaU2FrSktZVzA1Y0ZSWGNFSmxWVFZVVFVob1RtRlVRalZVVmxwU1pVVTFWV0l6YUU5aGJUaDRWR3ROTUdWck9VVlJiVVpLWW1wQmRVNHhTbmRsYWs1WVZUSkdVVXhVYkUxbFNGWXdWRzVvUjFGdE9YcGhlVEZwWW14Uk0xWkVUbTVhUnpWVVVsZE9UMlJXYnpSaGJGb3pUa05KYzBsdGJIcFJWMDR3WVZoYWJFbHFjREJqYmxac1RFTktlV0l5ZUd4SmFtOXBZek5XZDFwWVNtaGFSekZ3WW1sSmMwbHRUbmxhVjBZd1dsZFNRbVJEU1RaSmFrbDNUV3BWZEUxVVNYUk5ha1pWVFZSUk5rMVVUVFpOUkUxMVQxUlplRmRwU1hOSmJsWjNXa2RHTUZwWFVrSmtRMGsyU1dwSmQwMXFWWFJOVkVsMFRXcEdWVTFVVlRaTmFrMDJUV3BaZFU1VWF6TlhhVW81TGtwd2NUQm5NVzFPTjBWV2RqSk1aWFZDY0hkT1l6QklhVk14Wm5wR1dWVjBNVEpVWVVoc1kyRnJSRGdpTENKcGMwRmpkR2wyWlNJNmRISjFaU3dpY205c1pTSTZJbk4xY0dWeVlXUnRhVzRpTENKamNtVmhkR1ZrUVhRaU9pSXlNREkxTFRFeUxUSXhWREUwT2pFek9qQXpMamsyTVZvaUxDSjFjR1JoZEdWa1FYUWlPaUl5TURJMUxURXlMVEl4VkRFMU9qSTJPak14TGpJME1Wb2lmUS5uWElaVUF3cVF6c2NfdjRpMnB2TDlIajEtM3FnekEwOHJibVR4VDhtSjZBIiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDoxMzowMy45NjFaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNToyOToyMC44ODBaIn0.V2EXGkLlL-fBFtyrLOAzaxcOP24TNRCy4q2XC25ND_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Traction\",\n\t\"description\": \"Faire des Traction avec la barre\",\n\t\"uid\": \"1\",\n\t\"muscle\": \"dos\",\n\t\"difficulty\": \"Difficulty\",\n\t\"duration\": \"15\",\n\t\"calories\": \"145\",\n\t\"score\": \"5\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/rooms/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6948006fd2359a3d70b0c12d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRoomByStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Traction\",\n\t\"description\": \"Faire des Traction avec la barre\",\n\t\"uid\": \"1\",\n\t\"muscle\": \"dos\",\n\t\"difficulty\": \"Difficulty\",\n\t\"duration\": \"15\",\n\t\"calories\": \"145\",\n\t\"score\": \"5\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/rooms/Pending/findStatus",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms",
+								"Pending",
+								"findStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add room owner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtiR1ZWY0c5WmEyUnFZVlU1Y0ZOcmJGWmxhMnQ0Vkcxc1MwOVROV3hsVlhCdFdWWmtVbUZWT1hCVFZFcFFWa1pGTUZSVlVrSk5iSEIwVlZoc1RtVnNWVEZYVmxKUFlUQTFObEZ0YkU1U01ERTBWRmR3YW1GVmVFUlRha1pxVFd4YU5WbHRNVWRrUm5CVVUxUmFTbUpWV25KWmJHUnpaRlZzY0dReWJHcFNNRm8yV1hwT2EyUnRUblJWVjJ4UVlWVnNjbFJYTVVwaE1ERlZVVmQwVmsxdVVrZFpha0l6VGtkT1dGbDZUbXBOYWxaWlYxWlNRbVJXY0VaUFZWSlhUV3MxTkZkc2FIZE9iVlowWWpOd1ZrMUZjRmhhUnpWaFV6Rk5kMDVZV21wTlIzTjRWbFZrZDAweVRraGFSVlpxVWxkM2VWbFhjR3RVYTNoMFVsZHNUVkV3Y0RaWFZFazFaVlp3VkZOVVdrNVdSV3d6VkZWT00yRlhVa2hQV0VwaFZucFNjRlF5YkV0aVIxWldZMGM1V21FeVVuRlpWbFUxWTBaT2NtSkdXbXhoTW5RMFZrY3hjMU13T1ZST1YzaHNWbGhDZEZkV1dtdFZiVVpXVDFoQ1ZGWkZjRkZXYTFwR1RVWlNWbFZyU2s1aVNFSXdWbFpvYzFSdFZuTldWRVpZVm14S1VGbFVRVEZPYkVaMFlrVTFVMDFFUlRCV1JtUjNZVzFHVm1WRlVsUmhhMXB4VkZkNFlVNVdiSFJOVldSclVtNUNWVlV4VW1GVGJVcFdWMjVLV21KSFVucGFSbFp6WTBkUmVXSkhjRk5OUm04eVYxaHdUMkV5VW5SVWJsSldWako0VVZsV1ZuTmpiRkpZVFZWd2FFMUVSbFpWVm1Rd1Ztc3hkVlZyWkZwaGEwbDZWR3RrVDFkR2JEWlViWEJPWVd4YVdsWXhXbE5SYlZKWFkwVmFVRlpXU2xoVVYzTXhUa1prYzJGSVpFOWlWbG93V1dwT2QxWnJNVVpqUm1oaFVucFdhRlY2Ums1a01EVlpWMjF3VGxJelRqUldiRlpyWkRBd2VWUnJhR0ZTVmxweFZXeGtNMlZXYkZoalIzUlZZVE5vTUZWc1pITlVWa1YzWTBSYVdGWkZhekZhVmxwM1ZrWk9WVmRyTlZkU1YzZDZWa1pXVDAweVJsaFZhMmhRVjBWd2FGWnVjRk5qUmxGNVlrVjBUbEpVUmxWVk1XaFBVMjFLV0dWRVdsWldiVkpRVkZWa1IxZFdaSFJsUlhCb1ltdEdNMWRVU1RGV01rcEdaVVZTVkdKdGVIQlVWelZ2WXpGT1dHTklXbWhXTURFMlZtMDFhMWxXWkVaalJ6bFlZVEpPTkZrd1pFdGpSazVaVkd0d2FWWlVWVEZXTW5oclVqQXhSMk5HYUZaaE1IQnlWVlJDY2sxc1RsaGpSWEJyVFVSR2VGWnNhRk5VYkZwR1lrUkNWVll6UWtoV2JGVjRWbFpXVlZkck5WZFNWRUY1VmtaV1UxUnRVbFpQVmxaWVYwZG9XVmxXVm5ObGJFNVlUbFprYTAxWVFrbFZiWEJEV1ZaWmVGTnJUbUZTVlRWTFZHMTBjMk5XVGxsYVJUVm9Za1paZDFaR1dsTlRiVkpHVFZoR1UySkdXazlXYTFwR1RXeFNWMVZyTlU5aGVrWkdWa1pvVjFWR1drZGlSRkpYVFcxNFRGUXhUVEZWUlRWSlUxaG9WMkY2Vm5oVmFrWjNVV3hGZDFWdFdsWmhiV2hTV2tab2RrMVZPVmxYYlRWT1ZrWldNMVl5Y0hOaU1WcFhVMjE0V1UweFdsZFZWbVJYVm1zeFdHSkhhRTlUUmtsNlUxZHNNMkZYUmxsVWEwcGFUVEZLZDFwSE1WWmhWVGwxVlc1c2ExWXhWbnBUVnpWTFpHMUtTRlpYYkZCaFZYQTJXa1pvUTJKSFRuUlNiWFJwVmpKNE1WTlhiRE5oVm10NlUyMTRXbGRHU25OWGExWkhUVVZzY1dJeWJFNWhhMFkxVkd4TmQyVkZNWEJOU0d4T1ZteEdORlJyVW5abFJURTJZak5rVG1WVVVURlViWEJIV1ZWc2NHUXliR3RYUlVweVYxWm9VMkpHY0VaU2FrSktZVzA1Y0ZSWGNFSmxWVFZVVFVob1RtRlVRalZVVmxwU1pVVTFWV0l6YUU5aGJUaDRWR3ROTUdWck9VVlJiVVpLWW1wQmRVNHhTbmRsYWs1WVZUSkdVVXhVYkUxbFNGWXdWRzVvUjFGdE9YcGhlVEZwWW14Uk0xWkVUbTVhUnpWVVVsZE9UMlJXYnpSaGJGb3pUa05KYzBsdGJIcFJWMDR3WVZoYWJFbHFjREJqYmxac1RFTktlV0l5ZUd4SmFtOXBZek5XZDFwWVNtaGFSekZ3WW1sSmMwbHRUbmxhVjBZd1dsZFNRbVJEU1RaSmFrbDNUV3BWZEUxVVNYUk5ha1pWVFZSUk5rMVVUVFpOUkUxMVQxUlplRmRwU1hOSmJsWjNXa2RHTUZwWFVrSmtRMGsyU1dwSmQwMXFWWFJOVkVsMFRXcEdWVTFVVlRaTmFrMDJUV3BaZFU1VWF6TlhhVW81TGtwd2NUQm5NVzFPTjBWV2RqSk1aWFZDY0hkT1l6QklhVk14Wm5wR1dWVjBNVEpVWVVoc1kyRnJSRGdpTENKcGMwRmpkR2wyWlNJNmRISjFaU3dpY205c1pTSTZJbk4xY0dWeVlXUnRhVzRpTENKamNtVmhkR1ZrUVhRaU9pSXlNREkxTFRFeUxUSXhWREUwT2pFek9qQXpMamsyTVZvaUxDSjFjR1JoZEdWa1FYUWlPaUl5TURJMUxURXlMVEl4VkRFMU9qSTJPak14TGpJME1Wb2lmUS5uWElaVUF3cVF6c2NfdjRpMnB2TDlIajEtM3FnekEwOHJibVR4VDhtSjZBIiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDoxMzowMy45NjFaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNToyOToyMC44ODBaIn0.V2EXGkLlL-fBFtyrLOAzaxcOP24TNRCy4q2XC25ND_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomId\": \"6948133a7791fc0e534ed075\",\r\n    \"userId\": \"6948006fd2359a3d70b0c128\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rooms/owner",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rooms",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "YangaMachine",
+			"item": [
+				{
+					"name": "Get all Yanga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/yanga",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get YangaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/yanga/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "69480070d2359a3d70b0c131"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Yanga",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2OTQ4MDA2ZmQyMzU5YTNkNzBiMGMxMjciLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkU2tFb0w4cWc3c25XYTAuZE9DV2NxZXp6emozU0JWdnZKS05vc0k1UGp3cGdEcEl2ajdNLmEiLCJzY29yZSI6MTIwMCwidG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlKOS5leUpmYVdRaU9pSTJPVFE0TURBMlptUXlNelU1WVROa056QmlNR014TWpjaUxDSjFjMlZ5Ym1GdFpTSTZJbUZrYldsdUlpd2ljR0Z6YzNkdmNtUWlPaUlrTW1Ja01UQWtVMnRGYjB3NGNXYzNjMjVYWVRBdVpFOURWMk54WlhwNmVtb3pVMEpXZG5aS1MwNXZjMGsxVUdwM2NHZEVjRWwyYWpkTkxtRWlMQ0p6WTI5eVpTSTZNVEl3TUN3aWRHOXJaVzRpT2lKbGVVcG9Za2RqYVU5cFNrbFZla2t4VG1sS09TNWxlVXBtWVZkUmFVOXBTVEpQVkZFMFRVUkJNbHB0VVhsTmVsVTFXVlJPYTA1NlFtbE5SMDE0VFdwamFVeERTakZqTWxaNVltMUdkRnBUU1RaSmJVWnJZbGRzZFVscGQybGpSMFo2WXpOa2RtTnRVV2xQYVVsclRXMUphMDFVUVd0Vk1uUkdZakIzTkdOWFl6TmpNalZZV1ZSQmRWcEZPVVJXTWs1NFdsaHdObVZ0YjNwVk1FcFhaRzVhUzFNd05YWmpNR3N4VlVkd00yTkhaRVZqUld3eVlXcGtUa3h0UldsTVEwcDZXVEk1ZVZwVFNUWk5WRWwzVFVOM2FXUkhPWEphVnpScFQybEtiR1ZWY0c5WmEyUnFZVlU1Y0ZOcmJGWmxhMnQ0Vkcxc1MwOVROV3hsVlhCdFdWWmtVbUZWT1hCVFZFcFFWa1pGTUZSVlVrSk5iSEIwVlZoc1RtVnNWVEZYVmxKUFlUQTFObEZ0YkU1U01ERTBWRmR3YW1GVmVFUlRha1pxVFd4YU5WbHRNVWRrUm5CVVUxUmFTbUpWV25KWmJHUnpaRlZzY0dReWJHcFNNRm8yV1hwT2EyUnRUblJWVjJ4UVlWVnNjbFJYTVVwaE1ERlZVVmQwVmsxdVVrZFpha0l6VGtkT1dGbDZUbXBOYWxaWlYxWlNRbVJXY0VaUFZWSlhUV3MxTkZkc2FIZE9iVlowWWpOd1ZrMUZjRmhhUnpWaFV6Rk5kMDVZV21wTlIzTjRWbFZrZDAweVRraGFSVlpxVWxkM2VWbFhjR3RVYTNoMFVsZHNUVkV3Y0RaWFZFazFaVlp3VkZOVVdrNVdSV3d6VkZWT00yRlhVa2hQV0VwaFZucFNjRlF5YkV0aVIxWldZMGM1V21FeVVuRlpWbFUxWTBaT2NtSkdXbXhoTW5RMFZrY3hjMU13T1ZST1YzaHNWbGhDZEZkV1dtdFZiVVpXVDFoQ1ZGWkZjRkZXYTFwR1RVWlNWbFZyU2s1aVNFSXdWbFpvYzFSdFZuTldWRVpZVm14S1VGbFVRVEZPYkVaMFlrVTFVMDFFUlRCV1JtUjNZVzFHVm1WRlVsUmhhMXB4VkZkNFlVNVdiSFJOVldSclVtNUNWVlV4VW1GVGJVcFdWMjVLV21KSFVucGFSbFp6WTBkUmVXSkhjRk5OUm04eVYxaHdUMkV5VW5SVWJsSldWako0VVZsV1ZuTmpiRkpZVFZWd2FFMUVSbFpWVm1Rd1Ztc3hkVlZyWkZwaGEwbDZWR3RrVDFkR2JEWlViWEJPWVd4YVdsWXhXbE5SYlZKWFkwVmFVRlpXU2xoVVYzTXhUa1prYzJGSVpFOWlWbG93V1dwT2QxWnJNVVpqUm1oaFVucFdhRlY2Ums1a01EVlpWMjF3VGxJelRqUldiRlpyWkRBd2VWUnJhR0ZTVmxweFZXeGtNMlZXYkZoalIzUlZZVE5vTUZWc1pITlVWa1YzWTBSYVdGWkZhekZhVmxwM1ZrWk9WVmRyTlZkU1YzZDZWa1pXVDAweVJsaFZhMmhRVjBWd2FGWnVjRk5qUmxGNVlrVjBUbEpVUmxWVk1XaFBVMjFLV0dWRVdsWldiVkpRVkZWa1IxZFdaSFJsUlhCb1ltdEdNMWRVU1RGV01rcEdaVVZTVkdKdGVIQlVWelZ2WXpGT1dHTklXbWhXTURFMlZtMDFhMWxXWkVaalJ6bFlZVEpPTkZrd1pFdGpSazVaVkd0d2FWWlVWVEZXTW5oclVqQXhSMk5HYUZaaE1IQnlWVlJDY2sxc1RsaGpSWEJyVFVSR2VGWnNhRk5VYkZwR1lrUkNWVll6UWtoV2JGVjRWbFpXVlZkck5WZFNWRUY1VmtaV1UxUnRVbFpQVmxaWVYwZG9XVmxXVm5ObGJFNVlUbFprYTAxWVFrbFZiWEJEV1ZaWmVGTnJUbUZTVlRWTFZHMTBjMk5XVGxsYVJUVm9Za1paZDFaR1dsTlRiVkpHVFZoR1UySkdXazlXYTFwR1RXeFNWMVZyTlU5aGVrWkdWa1pvVjFWR1drZGlSRkpYVFcxNFRGUXhUVEZWUlRWSlUxaG9WMkY2Vm5oVmFrWjNVV3hGZDFWdFdsWmhiV2hTV2tab2RrMVZPVmxYYlRWT1ZrWldNMVl5Y0hOaU1WcFhVMjE0V1UweFdsZFZWbVJYVm1zeFdHSkhhRTlUUmtsNlUxZHNNMkZYUmxsVWEwcGFUVEZLZDFwSE1WWmhWVGwxVlc1c2ExWXhWbnBUVnpWTFpHMUtTRlpYYkZCaFZYQTJXa1pvUTJKSFRuUlNiWFJwVmpKNE1WTlhiRE5oVm10NlUyMTRXbGRHU25OWGExWkhUVVZzY1dJeWJFNWhhMFkxVkd4TmQyVkZNWEJOU0d4T1ZteEdORlJyVW5abFJURTJZak5rVG1WVVVURlViWEJIV1ZWc2NHUXliR3RYUlVweVYxWm9VMkpHY0VaU2FrSktZVzA1Y0ZSWGNFSmxWVFZVVFVob1RtRlVRalZVVmxwU1pVVTFWV0l6YUU5aGJUaDRWR3ROTUdWck9VVlJiVVpLWW1wQmRVNHhTbmRsYWs1WVZUSkdVVXhVYkUxbFNGWXdWRzVvUjFGdE9YcGhlVEZwWW14Uk0xWkVUbTVhUnpWVVVsZE9UMlJXYnpSaGJGb3pUa05KYzBsdGJIcFJWMDR3WVZoYWJFbHFjREJqYmxac1RFTktlV0l5ZUd4SmFtOXBZek5XZDFwWVNtaGFSekZ3WW1sSmMwbHRUbmxhVjBZd1dsZFNRbVJEU1RaSmFrbDNUV3BWZEUxVVNYUk5ha1pWVFZSUk5rMVVUVFpOUkUxMVQxUlplRmRwU1hOSmJsWjNXa2RHTUZwWFVrSmtRMGsyU1dwSmQwMXFWWFJOVkVsMFRXcEdWVTFVVlRaTmFrMDJUV3BaZFU1VWF6TlhhVW81TGtwd2NUQm5NVzFPTjBWV2RqSk1aWFZDY0hkT1l6QklhVk14Wm5wR1dWVjBNVEpVWVVoc1kyRnJSRGdpTENKcGMwRmpkR2wyWlNJNmRISjFaU3dpY205c1pTSTZJbk4xY0dWeVlXUnRhVzRpTENKamNtVmhkR1ZrUVhRaU9pSXlNREkxTFRFeUxUSXhWREUwT2pFek9qQXpMamsyTVZvaUxDSjFjR1JoZEdWa1FYUWlPaUl5TURJMUxURXlMVEl4VkRFMU9qSTJPak14TGpJME1Wb2lmUS5uWElaVUF3cVF6c2NfdjRpMnB2TDlIajEtM3FnekEwOHJibVR4VDhtSjZBIiwiaXNBY3RpdmUiOnRydWUsInJvbGUiOiJzdXBlcmFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNS0xMi0yMVQxNDoxMzowMy45NjFaIiwidXBkYXRlZEF0IjoiMjAyNS0xMi0yMVQxNToyOToyMC44ODBaIn0.V2EXGkLlL-fBFtyrLOAzaxcOP24TNRCy4q2XC25ND_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nameMachine\": \"Yanga Machine ssA\",\r\n    \"flavor\": [\"Fraise\", \"Mangue\"],\r\n    \"max_litres\": 20,\r\n    \"current_litres\": 5,\r\n    \"room_id\": \"6948006fd2359a3d70b0c12e\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/yanga",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Yanga Machine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/yanga/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6947ec0686d0e55d4cfe265b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all yanga need to be refill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/yanga/refill",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga",
+								"refill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refill max yanga",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/yanga/:id/refill",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga",
+								":id",
+								"refill"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6947ec0686d0e55d4cfe265b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Take a cup of yanga",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flavor\":\"Citron\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/yanga/:id/take",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"yanga",
+								":id",
+								"take"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6947ec0686d0e55d4cfe265b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sgnup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admint\",\n\t\"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/signup",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}
