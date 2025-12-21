@@ -1,19 +1,9 @@
 import { config } from "dotenv";
 import { OpenMongooseConnection } from "./services/utils";
-import { AuthController } from "./controllers";
 import express from "express"
 import Cors from "cors"
-import { ChallengeController } from "./controllers/challenge.controller";
-import { UserController } from "./controllers/user.controller";
-import { UserService } from "./services";
-import { ExerciseController } from "./controllers/exercice.controller";
-import { ExerciseService } from "./services/exercice.services";
-import { RoomService } from "./services/room.services";
-import { RoomController } from "./controllers/room.controller";
-import { BadgeService } from "./services/badge.services";
-import { BadgeController } from "./controllers/badge.controller";
-import { UserBadgeController } from "./controllers/userBadge.controller";
-import { UserBadgeService } from "./services/userBadge.services";
+import { AuthController, BadgeController, ChallengeController, ExerciseController, RoomController, UserBadgeController, UserController, YangaMachineController } from "./controllers";
+import { BadgeService, ExerciseService, RoomService, UserBadgeService, UserService, YangaMachineService } from "./services";
 
 config()
 
@@ -32,6 +22,7 @@ const userService = new UserService();
 const exerciseService = new ExerciseService();
 const roomService = new RoomService();
 const badgeService = new BadgeService();
+const yangaMachineService = new YangaMachineService();
 // const userModel = getUserModel()
 
 const authController = new AuthController()
@@ -40,7 +31,7 @@ const userController = new UserController(userService)
 const exerciseController = new ExerciseController(exerciseService)
 const roomController = new RoomController(roomService)
 const badgeController = new BadgeController(badgeService)
-const userBadgeController = new UserBadgeController(UserBadgeService)
+const yangaMachineController = new YangaMachineController(yangaMachineService)
 
 app.use("/auth", authController.buildRouter())
 app.use("/challenge", challengeController.buildRouter())
@@ -48,6 +39,7 @@ app.use("/users", userController.buildRouter())
 app.use("/exercises", exerciseController.buildRouter())
 app.use("/rooms", roomController.buildRouter())
 app.use("/badges", badgeController.buildRouter())
+app.use("/yanga", yangaMachineController.buildRouter())
 
 app.listen(3000, function () {
     console.log("Listening on the port 3000: http://localhost:3000")
