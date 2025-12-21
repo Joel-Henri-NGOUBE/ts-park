@@ -23,7 +23,7 @@ services:
     depends_on:
       - mongo-db
     environment:
-      MONGODB_URI: mongodb://user:password@mongo-db:27017
+      MONGODB_URI: mongodb://user:password@mongo-db:27017/ts_park?authSource=admin
       MONGODB_DATABASE: ts_park
       BCRYPT_SALT: SALT
       JWT_SECRET: SECRET
