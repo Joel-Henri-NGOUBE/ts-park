@@ -49,11 +49,11 @@ export class ExerciseService {
             return res.status(404).json({ message: "Id is required to found " });
         }
         try {
-            const existingExercise = await ExerciseModel.findOne({ id: id });
+            const existingExercise = await ExerciseModel.findByIdAndUpdate(id, exercise);
             if (!existingExercise) {
                 return res.status(404).json({ message: "Exercise not found" });
             }
-            return await ExerciseModel.updateOne({ id: id }, exercise);
+            return existingExercise;
         } catch (error) {
             return res.status(500).json({ message: "Error while updating exercise" });
         }

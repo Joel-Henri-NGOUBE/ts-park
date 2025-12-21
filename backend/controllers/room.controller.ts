@@ -1,6 +1,8 @@
 import { RoomService } from "../services/room.services"
 import { Request, Response } from "express"
 import { Router } from "express"
+import { RoleMiddleware } from "../middlewares/role.middleware"
+import { authMiddleware } from "../middlewares/authorization.middleware"
 
 export class RoomController {
     private roomService: RoomService
@@ -71,12 +73,12 @@ export class RoomController {
         const router = Router();
         router.get('/', this.getAllRooms.bind(this));
         router.get('/:roomId', this.getRoomById.bind(this));
-        router.post('/', this.createRoom.bind(this));
-        router.put('/:roomId/update', this.updateRoom.bind(this));
-        router.put('/:roomId/status', this.changeStatusRoom.bind(this));
-        router.delete('/:roomId', this.deleteRoom.bind(this));
+        router.post('/', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.createRoom.bind(this));
+        router.put('/:roomId/update', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.updateRoom.bind(this));
+        router.put('/:roomId/status', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.changeStatusRoom.bind(this));
+        router.delete('/:roomId', authMiddleware, RoleMiddleware.denyIfNotSuperAdmin, this.deleteRoom.bind(this));
         router.get('/:status/findStatus', this.getAllRoomByStatus.bind(this));
-        router.put('/owner', this.addRoomOwner.bind(this));
+        router.put('/owner', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.addRoomOwner.bind(this));
         return router;
     }
 

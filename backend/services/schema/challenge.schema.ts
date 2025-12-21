@@ -1,8 +1,8 @@
-import mongoose, { model, Model, Schema } from "mongoose";
+import mongoose, { model, Model, models, Schema } from "mongoose";
 import { Challenge, ChallengeType } from "../../models";
 import { Difficulty } from "../../models"
 
-export function getChallengeSchema(): Schema<Challenge>{
+export function getChallengeSchema(): Schema<Challenge> {
     return new Schema<Challenge>({
         name: {
             type: String,
@@ -36,6 +36,5 @@ export function getChallengeSchema(): Schema<Challenge>{
     })
 }
 
-export function getChallengeModel(): Model<Challenge>{
-    return model("Challenge", getChallengeSchema())
-}
+export const ChallengeModel: Model<Challenge> =
+    models.Challenge || model<Challenge>("Challenge", getChallengeSchema());

@@ -78,7 +78,6 @@ export class RoomService {
         }
         try {
             const existingRoom = await RoomModel.findByIdAndUpdate(roomId, room);
-            console.log(existingRoom);
             if (!existingRoom) {
                 return res.status(404).json({ message: "Room not found" });
             }

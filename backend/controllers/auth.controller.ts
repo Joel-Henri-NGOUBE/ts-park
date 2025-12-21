@@ -18,13 +18,11 @@ export class AuthController {
     async login(req: Request, res: Response) {
         const { username, password } = req.body
 
-
         const user: User = await this.userModel.findOne({
             username: username
         }) as User
 
         const isPasswordValid: boolean = bcrypt.compareSync(password, user.password)
-
         if (isPasswordValid) {
             const token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET as string)
             await this.userModel.updateOne({ username: username }, {

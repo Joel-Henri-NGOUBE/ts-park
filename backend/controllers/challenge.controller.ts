@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express"
 import bcrypt from "bcryptjs"
 import { Challenge, User } from "../models";
 import jwt from "jsonwebtoken"
-import { getChallengeModel } from "../services/schema/challenge.schema";
+import { ChallengeModel } from "../services/schema/challenge.schema";
 import mongoose from "mongoose";
 import { getExerciseChallengeModel } from "../services/schema/exercise_challenge.schema";
 import { getChallengeRegistrationModel } from "../services/schema/challenge_registration.schema";
@@ -14,16 +14,16 @@ type Exercise = {
     order: number
 }
 
-export class ChallengeController{
+export class ChallengeController {
     // readonly lessonService: LessonService
 
-    private challengeModel = getChallengeModel()
+    private challengeModel = ChallengeModel;
     private exerciseChallengeModel = getExerciseChallengeModel()
     private challengeRegistration = getChallengeRegistrationModel()
 
     constructor(
         // lessonService: LessonService
-    ){
+    ) {
         // this.lessonService = lessonService
     }
 
@@ -46,26 +46,26 @@ export class ChallengeController{
     //     }
     // }
 
-    private getPayload(req: Request){
+    private getPayload(req: Request) {
         const token = req.headers?.authorization?.split(" ")[1]
         const payload = jwt.verify(token as string, process.env.JWT_SECRET as string)
 
         return { token, payload }
     }
 
-    async shareChallenge(req: Request, res: Response){
+    async shareChallenge(req: Request, res: Response) {
         const id = req.params.id
-        
+
         this.challengeModel.updateOne({
             "_id": new mongoose.Types.ObjectId(id)
-        },{
+        }, {
             shared: true
         })
     }
 
-    async getUserChallenges(req: Request, res: Response){
+    async getUserChallenges(req: Request, res: Response) {
         const id = req.params.id
-        
+
         const userChallenges = await this.challengeModel.find({
             userId: new mongoose.Types.ObjectId(id),
             shared: true
@@ -73,8 +73,8 @@ export class ChallengeController{
         res.json(userChallenges)
     }
 
-    async register(req: Request, res: Response){
-        const { token , payload } = this.getPayload(req)
+    async register(req: Request, res: Response) {
+        const { token, payload } = this.getPayload(req)
         const id = req.params.id
 
         await this.challengeRegistration.insertOne({
@@ -82,11 +82,11 @@ export class ChallengeController{
             challengeId: id
         })
 
-        return res.json({message: "Challenge registered"})
+        return res.json({ message: "Challenge registered" })
     }
 
-    async create(req: Request, res: Response){
-        const { token , payload } = this.getPayload(req)
+    async create(req: Request, res: Response) {
+        const { token, payload } = this.getPayload(req)
         const { name, difficulty, exercises, isSocial, share } = req.body
         const inserted = await this.challengeModel.insertOne({
             name: name,
@@ -96,17 +96,17 @@ export class ChallengeController{
             difficulty: difficulty
         })
         console.log(inserted)
-        this.exerciseChallengeModel.insertMany((exercises as Exercise[]).map((e) => {        
-                return {
-                    order: e.order,
-                    exerciseId: e.id,
-                    challengeId: (inserted as Challenge)._id
-                }
-            
+        this.exerciseChallengeModel.insertMany((exercises as Exercise[]).map((e) => {
+            return {
+                order: e.order,
+                exerciseId: e.id,
+                challengeId: (inserted as Challenge)._id
+            }
+
         }))
     }
 
-    buildRouter(): Router{
+    buildRouter(): Router {
         const router: Router = Router();
         router.post("/create", this.create.bind(this))
         router.post("/user/:id", this.getUserChallenges.bind(this))

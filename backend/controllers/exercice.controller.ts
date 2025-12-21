@@ -1,5 +1,7 @@
 import { Request, Response, Router } from "express"
 import { ExerciseService } from "../services/exercice.services";
+import { RoleMiddleware } from "../middlewares/role.middleware";
+import { authMiddleware } from "../middlewares/authorization.middleware";
 export class ExerciseController {
     private exerciseService: ExerciseService
     constructor(exerciseService: ExerciseService) {
@@ -45,9 +47,9 @@ export class ExerciseController {
     buildRouter(): Router {
         const router = Router();
         router.get('/', this.getAllExercises.bind(this));
-        router.delete('/:id', this.deleteExercise.bind(this));
-        router.post('/', this.createExercise.bind(this));
-        router.put('/:id', this.updateExercise.bind(this));
+        router.delete('/:id', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.deleteExercise.bind(this));
+        router.post('/', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.createExercise.bind(this));
+        router.put('/:id', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.updateExercise.bind(this));
         return router;
     }
 

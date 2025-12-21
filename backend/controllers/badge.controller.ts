@@ -1,5 +1,7 @@
 import { Request, Response, Router } from "express";
 import { BadgeService } from "../services/badge.services"
+import { RoleMiddleware } from "../middlewares/role.middleware";
+import { authMiddleware } from "../middlewares/authorization.middleware";
 
 export class BadgeController {
     private badgeService: BadgeService
@@ -60,9 +62,9 @@ export class BadgeController {
     buildRouter(): Router {
         const router = Router();
         router.get('/', this.getAllBadges.bind(this));
-        router.delete('/:id', this.deleteBadge.bind(this));
-        router.post('/', this.createBadge.bind(this));
-        router.post('/assign', this.assignBadgeToUser.bind(this));
+        router.delete('/:id', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.deleteBadge.bind(this));
+        router.post('/', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.createBadge.bind(this));
+        router.post('/assign', authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.assignBadgeToUser.bind(this));
         router.get('/:uid/assign', this.getUserBadges.bind(this));
         return router;
     }

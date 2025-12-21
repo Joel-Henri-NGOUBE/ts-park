@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
 import { Router } from "express"
 import { YangaMachineService } from "../services/yangaMachine.services"
+import { authMiddleware } from "../middlewares/authorization.middleware";
+import { RoleMiddleware } from "../middlewares/role.middleware";
 
 export class YangaMachineController {
     private yangaMachineService: YangaMachineService
@@ -79,13 +81,13 @@ export class YangaMachineController {
 
     buildRouter(): Router {
         const router = Router();
-        router.post("/", this.createYanga.bind(this));
+        router.post("/", authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.createYanga.bind(this));
         router.get("/", this.getAllYangas.bind(this));
-        router.get("/refill", this.showYangaToRefill.bind(this));
+        router.get("/refill", authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.showYangaToRefill.bind(this));
         router.get("/:id", this.getYangaById.bind(this));
-        router.delete("/:id", this.deleteYangaById.bind(this));
-        router.put("/:id/refill", this.refillYanga.bind(this));
-        router.put("/:id/take", this.takeYangaCup.bind(this));
+        router.delete("/:id", authMiddleware, RoleMiddleware.denyIfNotSuperAdmin, this.deleteYangaById.bind(this));
+        router.put("/:id/refill", authMiddleware, RoleMiddleware.denyIfNotSuperAdminOrManager, this.refillYanga.bind(this));
+        router.put("/:id/take", authMiddleware, this.takeYangaCup.bind(this));
         return router;
     }
 
